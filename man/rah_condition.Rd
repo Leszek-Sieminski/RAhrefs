@@ -4,7 +4,7 @@
 \alias{rah_condition}
 \title{Single condition creation for an Ahrefs API query}
 \usage{
-rah_condition(column_name, operator, value, is_date)
+rah_condition(column_name, operator, value, is_date = FALSE)
 }
 \arguments{
 \item{column_name}{character string. Proper name of the column of the raport to query from}

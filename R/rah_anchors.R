@@ -72,7 +72,7 @@ rah_anchors <- function(target,
                         order_by = NULL,
                         where    = NULL,
                         having   = NULL){
-  data_list <- rah_downloader(target  = target,
+  data_list <- RAhrefs:::rah_downloader(target  = target,
                               report  = "anchors",
                               token   = token,
                               mode    = mode,

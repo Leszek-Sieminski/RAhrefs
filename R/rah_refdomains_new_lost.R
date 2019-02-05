@@ -72,16 +72,18 @@ rah_refdomains_new_lost <- function(target,
                                     limit   = 1000,
                                     order_by = NULL,
                                     where    = NULL,
-                                    having   = NULL){
-  data_list <- rah_downloader(target  = target,
-                              report  = "refdomains_new_lost",
-                              token   = token,
-                              mode    = mode,
-                              metrics = metrics,
-                              limit   = limit,
-                              order_by = order_by,
-                              where    = where,
-                              having   = having)
+                                    having   = NULL
+){
+  data_list <- RAhrefs:::rah_downloader(
+    target  = target,
+    report  = "refdomains_new_lost",
+    token   = token,
+    mode    = mode,
+    metrics = metrics,
+    limit   = limit,
+    order_by = order_by,
+    where    = where,
+    having   = having)
 
   data_df <- do.call(rbind.data.frame, data_list$refdomains)
 

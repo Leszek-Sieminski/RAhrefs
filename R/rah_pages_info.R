@@ -72,16 +72,18 @@ rah_pages_info <- function(target,
                            limit = 1000,
                            order_by = NULL,
                            where    = NULL,
-                           having   = NULL){
-  data_list <- rah_downloader(target  = target,
-                              report  = "pages_info",
-                              token   = token,
-                              mode    = mode,
-                              metrics = metrics,
-                              limit   = limit,
-                              order_by = order_by,
-                              where    = where,
-                              having   = having)
+                           having   = NULL
+){
+  data_list <- RAhrefs:::rah_downloader(
+    target  = target,
+    report  = "pages_info",
+    token   = token,
+    mode    = mode,
+    metrics = metrics,
+    limit   = limit,
+    order_by = order_by,
+    where    = where,
+    having   = having)
 }
 
 # b <- rah_pages_info(target = "ahrefs.com", limit = 10)

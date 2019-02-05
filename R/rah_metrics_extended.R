@@ -72,16 +72,18 @@ rah_metrics_extended <- function(target,
                                  limit   = 1000,
                                  order_by = NULL,
                                  where    = NULL,
-                                 having   = NULL){
-  data_list <- rah_downloader(target  = target,
-                              report  = "metrics_extended",
-                              token   = token,
-                              mode    = mode,
-                              metrics = metrics,
-                              limit   = limit,
-                              order_by = order_by,
-                              where    = where,
-                              having   = having)
+                                 having   = NULL
+){
+  data_list <- RAhrefs:::rah_downloader(
+    target  = target,
+    report  = "metrics_extended",
+    token   = token,
+    mode    = mode,
+    metrics = metrics,
+    limit   = limit,
+    order_by = order_by,
+    where    = where,
+    having   = having)
 
 
   data_df <- data.frame(t(sapply(data_list, unlist)))

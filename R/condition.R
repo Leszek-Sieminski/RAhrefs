@@ -47,7 +47,7 @@
 #'                            operator = "GREATER_THAN",
 #'                            value = "10")
 #' }
-rah_condition <- function(column_name, operator, value, is_date){
+rah_condition <- function(column_name, operator, value, is_date = FALSE){
   assertthat::assert_that(is.logical(is_date))
   assertthat::not_empty(column_name)
   assertthat::not_empty(operator)
@@ -101,7 +101,7 @@ rah_condition <- function(column_name, operator, value, is_date){
 # rah_condition(column_name = "first_seen",
 #               operator = "GREATER_THAN",
 #               value = "2018-01-01",
-#               is_value_a_date = TRUE)
+#               is_date = TRUE)
 #
 # rah_condition(column_name = "links",
 #               operator = "GREATER_THAN",
