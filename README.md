@@ -1,5 +1,8 @@
-# RAhrefs
-R package for SEO specialists which serves as an interface for [Ahrefs](ahrefs.com) API. 
+# RAhrefs 0.1.1
+R package for SEO specialists which serves as an interface for [Ahrefs](https://ahrefs.com/) API. 
+
+## What is Ahrefs?
+Ahrefs is a research toolset for backlinks and SEO analysis that enables access to off-site data.
 
 ## Features
 * Authenticate with an API key 
@@ -17,6 +20,8 @@ install.packages("devtools")
 devtools::install_github("Leszek-Sieminski/RAhrefs")
 ```
 
+
+
 ## Authentication
 ```r
 library("RAhrefs")
@@ -25,7 +30,39 @@ RAhrefs::rah_auth(api_key)
 # will return "API authorized" if success
 ```
 
+## Checking available reports
+To check what Ahrefs data are available in R through API, you need to check provided help dataset:
+```r
+library("RAhrefs")
+View(ahrefs_reports) # view dataset in a new tab (RStudio)
+print(head(ahrefs_reports, 5)) # see first 5 reports in the console
+
+# >         report_name          function_name                                                                                   short_description                                             url_address
+# > 1        ahrefs_rank        rah_ahrefs_rank                                                                 Contains the URLs and the rankings.        https://ahrefs.com/api/documentation/ahrefs-rank
+# > 2            anchors            rah_anchors Contains the anchor text and the num of backlinks, referring pages and referring domains that has it.            https://ahrefs.com/api/documentation/anchors
+# > 3 anchors_refdomains rah_anchors_refdomains                               Contains the num of anchors and backlinks with that anchor, per domain. https://ahrefs.com/api/documentation/anchors-refdomains
+# > 4          backlinks          rah_backlinks           Contains the backlinks and details of the referring pages, such as anchor and page title.          https://ahrefs.com/api/documentation/backlinks
+# > 5 backlinks_new_lost rah_backlinks_new_lost                              Contains the new or lost backlinks and details of the referring pages. https://ahrefs.com/api/documentation/backlinks-new-lost
+```
+
+## Checking available metrics
+To check what metrics can be choosen, you need to check provided help dataset:
+```r
+library("RAhrefs")
+View(ahrefs_metrics) # view dataset in a new tab (RStudio)
+print(head(ahrefs_metrics, 5)) # see first 5 metrics in the console
+
+# >         metric   type use_where? use_having?                                  description
+# > 1      url_from string       TRUE        TRUE URL of the page where the backlink is found.
+# > 2        url_to string       TRUE        TRUE URL of the page the backlink is pointing to.
+# > 3   ahrefs_rank    int       TRUE        TRUE            URL Rating of the referring page.
+# > 4 domain_rating    int      FALSE        TRUE       Domain Rating of the referring domain.
+# > 5    ahrefs_top    int      FALSE        TRUE            Ahrefs Rank of the target domain.
+```
+However, different functions can accept different metrics for experimental `where` & ` having` conditions. To find out which ones are available for a particular function, check that function's documentation.
+
 ## Creating conditions (experimental)
+Ahrefs API can use `where`, `having` and `order_by` parameters. However, behaviour of `where` and `having` is experimental and can be changed in further updates.
 ```r
 # first, create all needed conditions in single form:
 cond_1 <- RAhrefs::rah_condition(
@@ -48,8 +85,18 @@ result <- RAhrefs::rah_anchors(
   limit = 1000, 
   where = final_condition_set)
 ```
+
 ## Usage
 ```r
+
+# library ----------------------------
+library("RAhrefs")
+
+# authentication ---------------------
+api_key <- "012345"
+RAhrefs::rah_auth(api_key)
+
+# downloading data -------------------
 ahrefs_data <- RAhrefs::rah_anchors(
   target = "ahrefs.com",
   mode = "domain",
@@ -79,3 +126,4 @@ str(ahrefs_data)
 # >  $ first_seen  : POSIXct, format: "2018-06-06 07:16:28" "2015-11-22 14:30:18"
 # >  $ last_visited: POSIXct, format: "2019-01-05 10:37:13" "2015-11-22 14:30:18"
 ```
+
