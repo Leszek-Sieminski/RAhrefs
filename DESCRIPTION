@@ -1,7 +1,7 @@
 Package: RAhrefs
 Type: Package
 Title: Ahrefs.com API R Interface
-Version: 0.1.0
+Version: 0.1.1
 Depends: R (>= 3.5.0)
 Imports: 
     assertthat (>= 0.2.0), 

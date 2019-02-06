@@ -1,25 +1,54 @@
 #' Export the backlinks and details of the referring pages, such as anchor and page title.
 #'
-#' @description Contains the backlinks and details of the referring pages, such as anchor and page title.
-#'
 #' @param target character string. Aim of a request: a domain, a directory or a URL
 #' @param token character string. Authentication token. Should be available through enviromental variables
 #'     after authentication with function \code{rah_auth()}
-#' @param mode character string. Mode of operation: exact, domain, subdomains or prefix. See more
-#'     in Details section
-#' @param metrics character vector of columns to select. Possible metrics: url_from,	url_to,	ahrefs_rank,	domain_rating,
-#'     ahrefs_top,	ip_from,	links_internal,	links_external,	page_size,	encoding,	language,	title,	first_seen,
-#'     last_visited,	prev_visited,	original,	link_type,	redirect,	nofollow,	alt,	anchor,	text_pre,	text_post,
-#'     http_code,	url_from_first_seen.
+#' @param mode character string. Mode of operation: exact, domain, subdomains or prefix. See more in Details section
+#' @param metrics character vector of columns to select. See more in Details section
 #' @param limit integer. Number of results to return
 #' @param order_by character vector of columns to sort on. See more in Details section
-#' @param where character string - a condition created by rah_condition_set function that generates proper
-#'     "Where" condition to satisfy. See more in Details section
-#' @param having character string - a condition created by rah_condition_set function that generates proper
-#'     "Having" condition to satisfy. See more in Details section
+#' @param where character string - a condition created by \code{rah_condition_set()} function that generates proper
+#'     \code{"where"} condition to satisfy. See more in Details section
+#' @param having character string - a condition created by \code{rah_condition_set()} function that generates proper
+#'     \code{"having"} condition to satisfy. See more in Details section
+#'
+#' @source \url{https://ahrefs.com/api/documentation}
 #'
 #' @details
-#'     \strong{1. "mode"} parameter can take 4 different values that will affect how the results will be grouped.
+#'     \strong{1. available metrics} - you can select which columns (metrics) you want to download and which one
+#'     would be useful in filtering, \strong{BUT not all of them can always be used} in \code{"where"} &
+#'     \code{"having"} conditions:
+#'
+#'     \tabular{lllll}{
+#'     Column \tab Type \tab Where \tab Having \tab Description\cr
+#'     url_from            \tab string  \tab + \tab + \tab URL of the page where the backlink is found.                                                              \cr
+#'     url_to              \tab string  \tab + \tab + \tab URL of the page the backlink is pointing to.                                                              \cr
+#'     ahrefs_rank         \tab int     \tab + \tab + \tab URL Rating of the referring page.                                                                         \cr
+#'     domain_rating       \tab int     \tab - \tab + \tab Domain Rating of the referring domain.                                                                    \cr
+#'     ahrefs_top          \tab int     \tab - \tab + \tab Ahrefs Rank of the target domain.                                                                         \cr
+#'     ip_from             \tab string  \tab + \tab + \tab IP address of the referring page.                                                                         \cr
+#'     links_internal      \tab int     \tab + \tab + \tab Number of internal links found in the referring page.                                                     \cr
+#'     links_external      \tab int     \tab + \tab + \tab Number of external links found in the referring page.                                                     \cr
+#'     page_size           \tab int     \tab + \tab + \tab Size of the referring page, in bytes.                                                                     \cr
+#'     encoding            \tab string  \tab + \tab + \tab Character encoding of the referring page, for example "utf8" or "iso-8859-1" (Latin-1).                   \cr
+#'     language            \tab string  \tab + \tab + \tab Language of the referring page (ISO 639-1).                                                               \cr
+#'     title               \tab string  \tab + \tab + \tab Title of the referring page.                                                                              \cr
+#'     first_seen          \tab date    \tab + \tab + \tab Least recent date when the Ahrefs crawler was able to visit the backlink.                                 \cr
+#'     last_visited        \tab date    \tab + \tab + \tab Most recent date when the Ahrefs crawler was able to visit the backlink.                                  \cr
+#'     prev_visited        \tab date    \tab + \tab + \tab Second to the most recent date when the Ahrefs crawler was able to visit the backlink.                    \cr
+#'     original            \tab boolean \tab + \tab + \tab Indicates whether the backlink was present on the referring page when the Ahrefs crawler first visited it.\cr
+#'     link_type           \tab string  \tab + \tab + \tab Either "href", "redirect", "frame", "form", "canonical", "rss", or "alternate".                           \cr
+#'     redirect            \tab int     \tab + \tab + \tab For redirected links, the Redirect Code (3XX), zero otherwise.                                            \cr
+#'     nofollow            \tab boolean \tab + \tab + \tab Indicates whether the backlink is NoFollow.                                                               \cr
+#'     alt                 \tab string  \tab + \tab + \tab Alternative text of the image backlink, if exists.                                                        \cr
+#'     anchor              \tab string  \tab + \tab + \tab Anchor text of the backlink.                                                                              \cr
+#'     text_pre            \tab string  \tab + \tab + \tab Snippet before the anchor text.                                                                           \cr
+#'     text_post           \tab string  \tab + \tab + \tab Snippet after the anchor text.                                                                            \cr
+#'     http_code           \tab int     \tab + \tab + \tab The HTTP code for the Link URL.                                                                           \cr
+#'     url_from_first_seen \tab date    \tab + \tab + \tab Least recent date when the Ahrefs crawler was able to visit the referring page with backlink.
+#'     }
+#'
+#'     \strong{2. \code{"mode"}} parameter can take 4 different values that will affect how the results will be grouped.
 #'
 #' Example of URL directory with folder:
 #'     \itemize{
@@ -38,7 +67,7 @@
 #'       \item \strong{prefix:} apiv2.ahrefs.com/*
 #'     }
 #'
-#'    \strong{2. "order_by"} parameter is a character string that forces sorting of the results. Structure:
+#'    \strong{3. \code{"order_by"}} parameter is a character string that forces sorting of the results. Structure:
 #'     \itemize{
 #'       \item \strong{Structure:} "\code{column_name}:asc|desc"
 #'       \item \strong{Single column example:} "first_seen:asc" ~ this sorts results by \code{first_seen}
@@ -48,8 +77,8 @@
 #'           ascending order
 #'     }
 #'
-#'     \strong{3. "where" & "having"} are \strong{EXPERIMENTAL} parameters of condition sets (character strings)
-#'         that control filtering the results. To create arguments:
+#'     \strong{4. \code{"where"} & \code{"having"}} are \strong{EXPERIMENTAL} parameters of condition sets
+#'         (character strings) that control filtering the results. To create arguments:
 #'         \enumerate{
 #'           \item use \code{rah_condition()} function to create a single condition, for example:
 #'               \code{cond_1 <- rah_condition(column_name = "links", operator = "GREATER_THAN", value = "10")}
@@ -62,7 +91,7 @@
 #'
 #' @source \url{https://ahrefs.com/api/documentation}
 #'
-#' @return
+#' @return data frame
 #' @export
 #'
 #' @family Ahrefs reports
@@ -77,7 +106,7 @@ rah_backlinks <- function(target,
                           where    = NULL,
                           having   = NULL
 ){
-  data_list <- RAhrefs:::rah_downloader(
+  data_list <- RAhrefs::rah_downloader(
     target  = target,
     report  = "backlinks",
     token   = token,

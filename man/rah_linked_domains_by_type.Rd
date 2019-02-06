@@ -5,6 +5,8 @@
 \title{Export the external domains that the target has links to.}
 \source{
 \url{https://ahrefs.com/api/documentation}
+
+\url{https://ahrefs.com/api/documentation}
 }
 \usage{
 rah_linked_domains_by_type(target,
@@ -18,26 +20,54 @@ rah_linked_domains_by_type(target,
 \item{token}{character string. Authentication token. Should be available through enviromental variables
 after authentication with function \code{rah_auth()}}
 
-\item{mode}{character string. Mode of operation: exact, domain, subdomains or prefix. See more
-in Details section}
+\item{mode}{character string. Mode of operation: exact, domain, subdomains or prefix. See more in Details section}
 
-\item{metrics}{character vector of columns to select. Possible metrics:}
+\item{metrics}{character vector of columns to select. See more in Details section}
 
 \item{limit}{integer. Number of results to return}
 
 \item{order_by}{character vector of columns to sort on. See more in Details section}
 
-\item{where}{character string - a condition created by rah_condition_set function that generates proper
-"Where" condition to satisfy. See more in Details section}
+\item{where}{character string - a condition created by \code{rah_condition_set()} function that generates proper
+\code{"where"} condition to satisfy. See more in Details section}
 
-\item{having}{character string - a condition created by rah_condition_set function that generates proper
-"Having" condition to satisfy. See more in Details section}
+\item{having}{character string - a condition created by \code{rah_condition_set()} function that generates proper
+\code{"having"} condition to satisfy. See more in Details section}
+}
+\value{
+data frame
 }
 \description{
-Export the domains that the target links to by type.
+Export the external domains that the target has links to.
 }
 \details{
-\strong{1. "mode"} parameter can take 4 different values that will affect how the results will be grouped.
+\strong{1. available metrics} - you can select which columns (metrics) you want to download and which one
+    would be useful in filtering, \strong{BUT not all of them can always be used} in \code{"where"} &
+    \code{"having"} conditions:
+
+    \tabular{lllll}{
+    Column \tab Type \tab Where \tab Having \tab Description\cr
+    domain_from          \tab string \tab + \tab + \tab Target of the request.                                                           \cr
+    domain_to            \tab string \tab + \tab + \tab Root of external domain that has links from the target.                          \cr
+    links                \tab int    \tab - \tab + \tab Number of external links from the target that link to the external domain.       \cr
+    all                  \tab int    \tab - \tab + \tab Number of external links from the target that link to the external domain.       \cr
+    text                 \tab int    \tab - \tab + \tab Number of text external links from the target.                                   \cr
+    image                \tab int    \tab - \tab + \tab Number of image external links from the target.                                  \cr
+    nofollow             \tab int    \tab - \tab + \tab Number of NoFollow external links from the target.                               \cr
+    dofollow             \tab int    \tab - \tab + \tab Number of DoFollow external links from the target.                               \cr
+    redirect             \tab int    \tab - \tab + \tab Number of redirection external links from the target.                            \cr
+    canonical            \tab int    \tab - \tab + \tab Number of canonical external links from the target.                              \cr
+    gov                  \tab int    \tab - \tab + \tab Number of external links from the target to governmental domain.                 \cr
+    edu                  \tab int    \tab - \tab + \tab Number of external links from the target to educational domain.                  \cr
+    rss                  \tab int    \tab - \tab + \tab Number of RSS external links from the target.                                    \cr
+    alternate            \tab int    \tab - \tab + \tab Number of alternate external links from the target.                              \cr
+    first_seen           \tab date   \tab + \tab + \tab Least recent date when the Ahrefs crawler was able to see the link on the target.\cr
+    last_visited         \tab date   \tab + \tab + \tab Most recent date when the Ahrefs crawler was able to see the link on the target. \cr
+    domain_to_rating     \tab int    \tab - \tab + \tab Domain Rating of the external domain.                                            \cr
+    domain_to_ahrefs_top \tab int    \tab - \tab + \tab Ahrefs rank of the external domain.
+    }
+
+    \strong{2. \code{"mode"}} parameter can take 4 different values that will affect how the results will be grouped.
 
 Example of URL directory with folder:
     \itemize{
@@ -56,7 +86,7 @@ Example of URL directory with subdomain:
       \item \strong{prefix:} apiv2.ahrefs.com/*
     }
 
-   \strong{2. "order_by"} parameter is a character string that forces sorting of the results. Structure:
+   \strong{3. \code{"order_by"}} parameter is a character string that forces sorting of the results. Structure:
     \itemize{
       \item \strong{Structure:} "\code{column_name}:asc|desc"
       \item \strong{Single column example:} "first_seen:asc" ~ this sorts results by \code{first_seen}
@@ -66,8 +96,8 @@ Example of URL directory with subdomain:
           ascending order
     }
 
-    \strong{3. "where" & "having"} are \strong{EXPERIMENTAL} parameters of condition sets (character strings)
-        that control filtering the results. To create arguments:
+    \strong{4. \code{"where"} & \code{"having"}} are \strong{EXPERIMENTAL} parameters of condition sets
+        (character strings) that control filtering the results. To create arguments:
         \enumerate{
           \item use \code{rah_condition()} function to create a single condition, for example:
               \code{cond_1 <- rah_condition(column_name = "links", operator = "GREATER_THAN", value = "10")}

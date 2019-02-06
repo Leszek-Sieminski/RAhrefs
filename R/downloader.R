@@ -59,7 +59,7 @@
 #'               mode = "domain", metrics = NULL, limit = 1000, where = fin_cond, order_by = "first_seen:asc")}
 #'         }
 #' @return
-#'
+#' @export
 #' @examples
 #'
 #' \dontrun{RAhrefs::rah_downloader(

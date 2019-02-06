@@ -17,26 +17,38 @@ rah_ahrefs_rank(target, token = Sys.getenv("AHREFS_AUTH_TOKEN"),
 \item{token}{character string. Authentication token. Should be available through enviromental variables
 after authentication with function \code{rah_auth()}}
 
-\item{mode}{character string. Mode of operation: exact, domain, subdomains or prefix. See more
-in Details section}
+\item{mode}{character string. Mode of operation: exact, domain, subdomains or prefix. See more in Details section}
 
-\item{metrics}{character vector of columns to select. Possible metrics: "url", "ahrefs_rank".}
+\item{metrics}{character vector of columns to select. See more in Details section}
 
 \item{limit}{integer. Number of results to return}
 
 \item{order_by}{character vector of columns to sort on. See more in Details section}
 
-\item{where}{character string - a condition created by rah_condition_set function that generates proper
-"Where" condition to satisfy. See more in Details section}
+\item{where}{character string - a condition created by \code{rah_condition_set()} function that generates proper
+\code{"where"} condition to satisfy. See more in Details section}
 
-\item{having}{character string - a condition created by rah_condition_set function that generates proper
-"Having" condition to satisfy. See more in Details section}
+\item{having}{character string - a condition created by \code{rah_condition_set()} function that generates proper
+\code{"having"} condition to satisfy. See more in Details section}
+}
+\value{
+data frame
 }
 \description{
 Export the URLs and their rankings.
 }
 \details{
-\strong{1. "mode"} parameter can take 4 different values that will affect how the results will be grouped.
+\strong{1. available metrics} - you can select which columns (metrics) you want to download and which one
+    would be useful in filtering, \strong{BUT not all of them can always be used} in \code{"where"} &
+    \code{"having"} conditions:
+
+    \tabular{lllll}{
+    Column \tab Type \tab Where \tab Having \tab Description\cr
+    url         \tab string \tab + \tab + \tab Target of the request.   \cr
+    ahrefs_rank \tab int    \tab - \tab + \tab URL Rating of the target.
+    }
+
+    \strong{2. \code{"mode"}} parameter can take 4 different values that will affect how the results will be grouped.
 
 Example of URL directory with folder:
     \itemize{
@@ -55,7 +67,7 @@ Example of URL directory with subdomain:
       \item \strong{prefix:} apiv2.ahrefs.com/*
     }
 
-   \strong{2. "order_by"} parameter is a character string that forces sorting of the results. Structure:
+   \strong{3. \code{"order_by"}} parameter is a character string that forces sorting of the results. Structure:
     \itemize{
       \item \strong{Structure:} "\code{column_name}:asc|desc"
       \item \strong{Single column example:} "first_seen:asc" ~ this sorts results by \code{first_seen}
@@ -65,8 +77,8 @@ Example of URL directory with subdomain:
           ascending order
     }
 
-    \strong{3. "where" & "having"} are \strong{EXPERIMENTAL} parameters of condition sets (character strings)
-        that control filtering the results. To create arguments:
+    \strong{4. \code{"where"} & \code{"having"}} are \strong{EXPERIMENTAL} parameters of condition sets
+        (character strings) that control filtering the results. To create arguments:
         \enumerate{
           \item use \code{rah_condition()} function to create a single condition, for example:
               \code{cond_1 <- rah_condition(column_name = "links", operator = "GREATER_THAN", value = "10")}

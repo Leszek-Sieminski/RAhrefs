@@ -5,6 +5,8 @@
 \title{Export the referring domains that contain backlinks to the target.}
 \source{
 \url{https://ahrefs.com/api/documentation}
+
+\url{https://ahrefs.com/api/documentation}
 }
 \usage{
 rah_refdomains_by_type(target, token = Sys.getenv("AHREFS_AUTH_TOKEN"),
@@ -17,26 +19,54 @@ rah_refdomains_by_type(target, token = Sys.getenv("AHREFS_AUTH_TOKEN"),
 \item{token}{character string. Authentication token. Should be available through enviromental variables
 after authentication with function \code{rah_auth()}}
 
-\item{mode}{character string. Mode of operation: exact, domain, subdomains or prefix. See more
-in Details section}
+\item{mode}{character string. Mode of operation: exact, domain, subdomains or prefix. See more in Details section}
 
-\item{metrics}{character vector of columns to select. Possible metrics:}
+\item{metrics}{character vector of columns to select. See more in Details section}
 
 \item{limit}{integer. Number of results to return}
 
 \item{order_by}{character vector of columns to sort on. See more in Details section}
 
-\item{where}{character string - a condition created by rah_condition_set function that generates proper
-"Where" condition to satisfy. See more in Details section}
+\item{where}{character string - a condition created by \code{rah_condition_set()} function that generates proper
+\code{"where"} condition to satisfy. See more in Details section}
 
-\item{having}{character string - a condition created by rah_condition_set function that generates proper
-"Having" condition to satisfy. See more in Details section}
+\item{having}{character string - a condition created by \code{rah_condition_set()} function that generates proper
+\code{"having"} condition to satisfy. See more in Details section}
+}
+\value{
+data frame
 }
 \description{
 Export the referring domains that contain backlinks to the target.
 }
 \details{
-\strong{1. "mode"} parameter can take 4 different values that will affect how the results will be grouped.
+\strong{1. available metrics} - you can select which columns (metrics) you want to download and which one
+    would be useful in filtering, \strong{BUT not all of them can always be used} in \code{"where"} &
+    \code{"having"} conditions:
+
+    \tabular{lllll}{
+    Column \tab Type \tab Where \tab Having \tab Description\cr
+    url                \tab string \tab + \tab - \tab Target of the request.                                                                                           \cr
+    ip                 \tab string \tab + \tab - \tab IP address of the referring domain that links to the target.                                                     \cr
+    refdomain          \tab string \tab + \tab + \tab The referring domain that contains at least one link to the target.                                              \cr
+    all                \tab bool   \tab + \tab - \tab Set to true for referring domains that contain at least one backlink to the target.                              \cr
+    text               \tab bool   \tab + \tab - \tab Set to true for referring domains that contain at least one text backlink to the target.                         \cr
+    image              \tab bool   \tab + \tab - \tab Set to true for referring domains that contain at least one image backlink to the target.                        \cr
+    nofollow           \tab bool   \tab + \tab - \tab Set to true for referring domains that contain at least one nofollow backlink to the target.                     \cr
+    dofollow           \tab bool   \tab + \tab - \tab Set to true for referring domains that contain at least one dofollow backlink to the target.                     \cr
+    redirect           \tab bool   \tab + \tab - \tab Set to true for referring domains that contain at least one redirect backlink to the target.                     \cr
+    canonical          \tab bool   \tab + \tab - \tab Set to true for referring domains that contain at least one canonical backlink to the target.                    \cr
+    gov                \tab bool   \tab + \tab - \tab Set to true for referring domains that contain at least one backlink to the target from a governmental refdomain.\cr
+    edu                \tab bool   \tab + \tab - \tab Set to true for referring domains that contain at least one backlink to the target from an educational refdomain.\cr
+    backlinks          \tab int    \tab + \tab + \tab Number of backlinks found in the referring domain that link to the target.                                       \cr
+    backlinks_dofollow \tab int    \tab + \tab + \tab Number of dofollow backlinks found in the referring domain that link to the target.                              \cr
+    refpages           \tab int    \tab + \tab + \tab Number of referring pages found in the referring domain that link to the target.                                 \cr
+    first_seen         \tab date   \tab + \tab + \tab Least recent date when the Ahrefs crawler was able to visit the backlinks in the referring domain.               \cr
+    last_visited       \tab date   \tab + \tab + \tab Most recent date when the Ahrefs crawler was able to visit the backlinks in the referring domain.                \cr
+    domain_rating      \tab int    \tab - \tab + \tab Domain Rating of the referring domain.
+    }
+
+    \strong{2. \code{"mode"}} parameter can take 4 different values that will affect how the results will be grouped.
 
 Example of URL directory with folder:
     \itemize{
@@ -55,7 +85,7 @@ Example of URL directory with subdomain:
       \item \strong{prefix:} apiv2.ahrefs.com/*
     }
 
-   \strong{2. "order_by"} parameter is a character string that forces sorting of the results. Structure:
+   \strong{3. \code{"order_by"}} parameter is a character string that forces sorting of the results. Structure:
     \itemize{
       \item \strong{Structure:} "\code{column_name}:asc|desc"
       \item \strong{Single column example:} "first_seen:asc" ~ this sorts results by \code{first_seen}
@@ -65,8 +95,8 @@ Example of URL directory with subdomain:
           ascending order
     }
 
-    \strong{3. "where" & "having"} are \strong{EXPERIMENTAL} parameters of condition sets (character strings)
-        that control filtering the results. To create arguments:
+    \strong{4. \code{"where"} & \code{"having"}} are \strong{EXPERIMENTAL} parameters of condition sets
+        (character strings) that control filtering the results. To create arguments:
         \enumerate{
           \item use \code{rah_condition()} function to create a single condition, for example:
               \code{cond_1 <- rah_condition(column_name = "links", operator = "GREATER_THAN", value = "10")}

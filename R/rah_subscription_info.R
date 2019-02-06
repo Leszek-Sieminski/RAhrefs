@@ -1,22 +1,32 @@
 #' Export user subscription information.
 #'
-#' @description Export user subscription information.
-#'
 #' @param target character string. Aim of a request: a domain, a directory or a URL
 #' @param token character string. Authentication token. Should be available through enviromental variables
 #'     after authentication with function \code{rah_auth()}
-#' @param mode character string. Mode of operation: exact, domain, subdomains or prefix. See more
-#'     in Details section
-#' @param metrics character vector of columns to select. Possible metrics:
+#' @param mode character string. Mode of operation: exact, domain, subdomains or prefix. See more in Details section
+#' @param metrics character vector of columns to select. See more in Details section
 #' @param limit integer. Number of results to return
 #' @param order_by character vector of columns to sort on. See more in Details section
-#' @param where character string - a condition created by rah_condition_set function that generates proper
-#'     "Where" condition to satisfy. See more in Details section
-#' @param having character string - a condition created by rah_condition_set function that generates proper
-#'     "Having" condition to satisfy. See more in Details section
+#' @param where character string - a condition created by \code{rah_condition_set()} function that generates proper
+#'     \code{"where"} condition to satisfy. See more in Details section
+#' @param having character string - a condition created by \code{rah_condition_set()} function that generates proper
+#'     \code{"having"} condition to satisfy. See more in Details section
+#'
+#' @source \url{https://ahrefs.com/api/documentation}
 #'
 #' @details
-#'     \strong{1. "mode"} parameter can take 4 different values that will affect how the results will be grouped.
+#'     \strong{1. available metrics} - you can select which columns (metrics) you want to download and which one
+#'     would be useful in filtering, \strong{BUT not all of them can always be used} in \code{"where"} &
+#'     \code{"having"} conditions:
+#'
+#'     \tabular{lllll}{
+#'     Column \tab Type \tab Where \tab Having \tab Description\cr
+#'     rows_left    \tab int    \tab - \tab - \tab Number of rows available for making API requests.        \cr
+#'     rows_limit   \tab int    \tab - \tab - \tab Total number of rows available for the subscription plan.\cr
+#'     subscription \tab string \tab - \tab - \tab Name of the API subscription plan.
+#'     }
+#'
+#'     \strong{2. \code{"mode"}} parameter can take 4 different values that will affect how the results will be grouped.
 #'
 #' Example of URL directory with folder:
 #'     \itemize{
@@ -35,7 +45,7 @@
 #'       \item \strong{prefix:} apiv2.ahrefs.com/*
 #'     }
 #'
-#'    \strong{2. "order_by"} parameter is a character string that forces sorting of the results. Structure:
+#'    \strong{3. \code{"order_by"}} parameter is a character string that forces sorting of the results. Structure:
 #'     \itemize{
 #'       \item \strong{Structure:} "\code{column_name}:asc|desc"
 #'       \item \strong{Single column example:} "first_seen:asc" ~ this sorts results by \code{first_seen}
@@ -45,8 +55,8 @@
 #'           ascending order
 #'     }
 #'
-#'     \strong{3. "where" & "having"} are \strong{EXPERIMENTAL} parameters of condition sets (character strings)
-#'         that control filtering the results. To create arguments:
+#'     \strong{4. \code{"where"} & \code{"having"}} are \strong{EXPERIMENTAL} parameters of condition sets
+#'         (character strings) that control filtering the results. To create arguments:
 #'         \enumerate{
 #'           \item use \code{rah_condition()} function to create a single condition, for example:
 #'               \code{cond_1 <- rah_condition(column_name = "links", operator = "GREATER_THAN", value = "10")}
@@ -59,7 +69,7 @@
 #'
 #' @source \url{https://ahrefs.com/api/documentation}
 #'
-#' @return
+#' @return data frame
 #' @export
 #'
 #' @family Ahrefs reports
@@ -74,7 +84,7 @@ rah_subscription_info <- function(target,
                                   where    = NULL,
                                   having   = NULL
 ){
-  data_list <- RAhrefs:::rah_downloader(
+  data_list <- RAhrefs::rah_downloader(
     target  = target,
     report  = "subscription_info",
     token   = token,

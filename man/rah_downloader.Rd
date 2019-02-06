@@ -36,8 +36,6 @@ in Details section}
 }
 \value{
 list or nested list object
-
-
 }
 \description{
 Universal downloading helper function for Ahrefs API
