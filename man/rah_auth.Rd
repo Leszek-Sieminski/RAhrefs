@@ -11,6 +11,9 @@ rah_auth(api_key, verbose = TRUE)
 
 \item{verbose}{logical, defaults to TRUE. Set to FALSE to stop printing status in the console}
 }
+\value{
+invisibly returns API token into environment variable AHREFS_AUTH_TOKEN and prints the status
+}
 \description{
 Authorize your Ahrefs API connection with a API Key (Token)
 }

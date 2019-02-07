@@ -1,5 +1,9 @@
 #' Universal downloading helper function for Ahrefs API
 #'
+#' @description This is a helper function and it \strong{should not be used in most cases}. Use
+#'     \code{rah_<report_name>()} functions instead as they are specific wrappers that provide
+#'     full documentation needed for each report.
+#'
 #' @param target character string. Aim of a request: a domain, a directory or a URL
 #' @param report character string. Name of the table (report) to select data from
 #' @param token character string. Authentication token. Should be available through enviromental variables
@@ -16,7 +20,6 @@
 #'
 #' @source \url{https://ahrefs.com/api/documentation}
 #'
-#' @return list or nested list object
 #' @details
 #'     \strong{1. "mode"} parameter can take 4 different values that will affect how the results will be grouped.
 #'
@@ -58,10 +61,13 @@
 #'               \code{RAhrefs::rah_downloader(target = "ahrefs.com", report = "anchors", token = "0123456789",
 #'               mode = "domain", metrics = NULL, limit = 1000, where = fin_cond, order_by = "first_seen:asc")}
 #'         }
-#' @return
-#' @export
-#' @examples
 #'
+#' @return list or nested list object
+#'
+#' @export
+#'
+#' @examples
+#' # do not use this function - instead use its wrappers (rah_<report_name>()) that have full documentation
 #' \dontrun{RAhrefs::rah_downloader(
 #'    target  = "ahrefs.com",
 #'    report  = "anchors",
