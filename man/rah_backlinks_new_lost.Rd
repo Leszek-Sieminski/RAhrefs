@@ -112,6 +112,32 @@ Example of URL directory with subdomain:
               mode = "domain", metrics = NULL, limit = 1000, where = fin_cond, order_by = "first_seen:asc")}
         }
 }
+\examples{
+\dontrun{
+# creating single conditions for 'where' parameter
+# let's see anchors of all backlinks detected in 2018
+cond_1 <- RAhrefs::rah_condition(
+   column_name = "nofollow",
+   operator    = "EQUALS",
+   value       = 0)
+
+cond_2 <- RAhrefs::rah_condition(
+   column_name = "last_visited",
+   operator    = "LESS_OR_EQUAL",
+   value       = "2018-05-31",
+   is_date     = TRUE)
+
+# joining conditions into one condition set
+cond_where <- RAhrefs::rah_condition_set(cond_1, cond_2)
+
+# downloading
+b <- RAhrefs::rah_backlinks_new_lost(
+  target   = "ahrefs.com",
+  limit    = 2,
+  where    = cond_where,
+  order_by = "domain_rating:desc")
+}
+}
 \seealso{
 Other Ahrefs reports: \code{\link{rah_ahrefs_rank}},
   \code{\link{rah_anchors_refdomains}},

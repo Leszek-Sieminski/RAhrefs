@@ -75,6 +75,13 @@
 #' @family Ahrefs reports
 #'
 #' @examples
+#' \dontrun{
+#' # downloading
+#' b <- RAhrefs::rah_refips(
+#'   target   = "ahrefs.com",
+#'   limit    = 2,
+#'   order_by = "backlinks:desc")
+#' }
 rah_refips <- function(target,
                        token = Sys.getenv("AHREFS_AUTH_TOKEN"),
                        mode = "domain",

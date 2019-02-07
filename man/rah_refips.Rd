@@ -92,6 +92,15 @@ Example of URL directory with subdomain:
               mode = "domain", metrics = NULL, limit = 1000, where = fin_cond, order_by = "first_seen:asc")}
         }
 }
+\examples{
+\dontrun{
+# downloading
+b <- RAhrefs::rah_refips(
+  target   = "ahrefs.com",
+  limit    = 2,
+  order_by = "backlinks:desc")
+}
+}
 \seealso{
 Other Ahrefs reports: \code{\link{rah_ahrefs_rank}},
   \code{\link{rah_anchors_refdomains}},

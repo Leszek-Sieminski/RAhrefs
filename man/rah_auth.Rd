@@ -15,5 +15,7 @@ rah_auth(api_key, verbose = TRUE)
 Authorize your Ahrefs API connection with a API Key (Token)
 }
 \examples{
-rah_auth("ABCDEFGHIJKLMNOPQRST")
+\dontrun{
+  rah_auth("ABCDEFGHIJKLMNOPQRST")
+}
 }

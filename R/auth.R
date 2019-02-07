@@ -7,7 +7,10 @@
 #' @return
 #' @export
 #'
-#' @examples rah_auth("ABCDEFGHIJKLMNOPQRST")
+#' @examples
+#' \dontrun{
+#'   rah_auth("ABCDEFGHIJKLMNOPQRST")
+#' }
 rah_auth <- function(
   api_key,
   verbose = TRUE

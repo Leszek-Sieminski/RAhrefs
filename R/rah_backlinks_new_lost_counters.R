@@ -99,22 +99,45 @@
 #' @family Ahrefs reports
 #'
 #' @examples
+#' \dontrun{
+#' # creating single conditions for 'where' parameter
+#' # let's see anchors of all backlinks detected in 2018
+#' cond_1 <- RAhrefs::rah_condition(
+#'    column_name = "links_internal",
+#'    operator    = "GREATER_OR_EQUAL",
+#'    value       = "5")
+#'
+#' cond_2 <- RAhrefs::rah_condition(
+#'    column_name = "links_external",
+#'    operator    = "LESS_OR_EQUAL",
+#'    value       = "5")
+#'
+#' # joining conditions into one condition set
+#' cond_where <- RAhrefs::rah_condition_set(cond_1, cond_2)
+#'
+#' # downloading
+#' b <- RAhrefs::rah_backlinks_new_lost_counters(
+#'   target   = "ahrefs.com",
+#'   limit    = 2,
+#'   where    = cond_where,
+#'   order_by = "links_external:desc")
+#' }
 rah_backlinks_new_lost_counters <- function(target,
-                                            token = Sys.getenv("AHREFS_AUTH_TOKEN"),
-                                            mode = "domain",
-                                            metrics = NULL,
-                                            limit   = 1000,
+                                            token    = Sys.getenv("AHREFS_AUTH_TOKEN"),
+                                            mode     = "domain",
+                                            metrics  = NULL,
+                                            limit    = 1000,
                                             order_by = NULL,
                                             where    = NULL,
                                             having   = NULL
 ){
   data_list <- RAhrefs::rah_downloader(
-    target  = target,
-    report  = "backlinks_new_lost_counters",
-    token   = token,
-    mode    = mode,
-    metrics = metrics,
-    limit   = limit,
+    target   = target,
+    report   = "backlinks_new_lost_counters",
+    token    = token,
+    mode     = mode,
+    metrics  = metrics,
+    limit    = limit,
     order_by = order_by,
     where    = where,
     having   = having)

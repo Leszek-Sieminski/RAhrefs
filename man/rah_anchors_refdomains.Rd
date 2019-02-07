@@ -93,6 +93,25 @@ Example of URL directory with subdomain:
               mode = "domain", metrics = NULL, limit = 1000, where = fin_cond, order_by = "first_seen:asc")}
         }
 }
+\examples{
+\dontrun{
+# creating single conditions for 'where' parameter
+cond_1 <- RAhrefs::rah_condition(
+   column_name = "backlinks",
+   operator    = "GREATER_OR_EQUAL",
+   value       = "10")
+
+# joining conditions into one condition set
+cond_where <- RAhrefs::rah_condition_set(cond_1)
+
+# downloading
+b <- RAhrefs::rah_anchors_refdomains(
+  target   = "ahrefs.com",
+  limit    = 2,
+  where    = cond_where,
+  order_by = "anchors:desc")
+}
+}
 \seealso{
 Other Ahrefs reports: \code{\link{rah_ahrefs_rank}},
   \code{\link{rah_anchors}},

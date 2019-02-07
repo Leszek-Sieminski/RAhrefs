@@ -72,11 +72,43 @@
 #' @family Ahrefs reports
 #'
 #' @examples
+#' \dontrun{
+#' # creating single conditions for 'where' parameter
+#' cond_1 <- RAhrefs::rah_condition(
+#'   column_name = "url",
+#'   operator    = "WORD",
+#'   value       = "www")
+#'
+#' cond_2 <- RAhrefs::rah_condition(
+#'   column_name = "url",
+#'   operator    = "GREATER_THAN",
+#'   value       = "/cart")
+#'
+#' # creating single conditions for 'having' parameter
+#' cond_3 <- RAhrefs::rah_condition(
+#'   column_name = "ahrefs_rank",
+#    operator    = "GREATER_THAN",
+#    value       = "10")
+#'
+#' # joining conditions into one 'where' condition set
+#' cond_where <- RAhrefs::rah_condition_set(cond_1, cond_2)
+#'
+#' # joining conditions into one 'having' condition set
+#' cond_having <- RAhrefs::rah_condition_set(cond_3)
+#'
+#' # downloading
+#' b <- RAhrefs::rah_ahrefs_rank(
+#'   target   = "ahrefs.com",
+#'   limit    = 2,
+#'   where    = cond_where,
+#'   having   = cond_having,
+#'   order_by = "ahrefs_rank:desc")
+#' }
 rah_ahrefs_rank <- function(target,
-                            token = Sys.getenv("AHREFS_AUTH_TOKEN"),
-                            mode = "domain",
-                            metrics = NULL,
-                            limit   = 1000,
+                            token    = Sys.getenv("AHREFS_AUTH_TOKEN"),
+                            mode     = "domain",
+                            metrics  = NULL,
+                            limit    = 1000,
                             order_by = NULL,
                             where    = NULL,
                             having   = NULL

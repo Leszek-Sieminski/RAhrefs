@@ -93,6 +93,28 @@
 #' @family Ahrefs reports
 #'
 #' @examples
+#' \dontrun{
+#' # creating single conditions for 'where' parameter
+#' cond_1 <- RAhrefs::rah_condition(
+#'    column_name = "domain_rating",
+#'    operator    = "GREATER_OR_EQUAL",
+#'    value       = "10")
+#'
+#' cond_2 <- RAhrefs::rah_condition(
+#'    column_name = "ahrefs_rank",
+#'    operator    = "GREATER_OR_EQUAL",
+#'    value       = "10")
+#'
+#' # joining conditions into one condition set
+#' cond_where <- RAhrefs::rah_condition_set(cond_1, cond_2)
+#'
+#' # downloading
+#' b <- RAhrefs::rah_linked_anchors(
+#'   target   = "ahrefs.com",
+#'   limit    = 2,
+#'   where    = cond_where,
+#'   order_by = "ahrefs_rank:desc")
+#' }
 rah_linked_anchors <- function(target,
                                token = Sys.getenv("AHREFS_AUTH_TOKEN"),
                                mode = "domain",
