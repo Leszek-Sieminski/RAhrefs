@@ -1,4 +1,4 @@
-# RAhrefs 0.1.1
+# RAhrefs 0.1.2
 R package for SEO specialists which serves as an interface for [Ahrefs](https://ahrefs.com/) API. 
 
 ## What is Ahrefs?
