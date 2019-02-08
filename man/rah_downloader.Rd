@@ -85,7 +85,8 @@ Example of URL directory with subdomain:
         }
 }
 \examples{
-# do not use this function - instead use its wrappers (rah_<report_name>()) that have full documentation
+# do not use this function - instead use its wrappers (rah_<report_name>())
+# that have full documentation
 \dontrun{RAhrefs::rah_downloader(
    target  = "ahrefs.com",
    report  = "anchors",

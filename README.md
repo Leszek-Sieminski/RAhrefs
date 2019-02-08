@@ -20,8 +20,6 @@ install.packages("devtools")
 devtools::install_github("Leszek-Sieminski/RAhrefs")
 ```
 
-
-
 ## Authentication
 ```r
 library("RAhrefs")
@@ -29,6 +27,9 @@ api_key <- "012345"
 RAhrefs::rah_auth(api_key)
 # will return "API authorized" if success
 ```
+
+## Testing
+IMPORTANT NOTE: for testing purposes, target "ahrefs.com" domain - no API credits will be used.
 
 ## Checking available reports
 To check what Ahrefs data are available in R through API, you need to check provided help dataset:
