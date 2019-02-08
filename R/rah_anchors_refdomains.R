@@ -76,6 +76,23 @@
 #' @family Ahrefs reports
 #'
 #' @examples
+#' \dontrun{
+#' # creating single conditions for 'where' parameter
+#' cond_1 <- RAhrefs::rah_condition(
+#'    column_name = "backlinks",
+#'    operator    = "GREATER_OR_EQUAL",
+#'    value       = "10")
+#'
+#' # joining conditions into one condition set
+#' cond_where <- RAhrefs::rah_condition_set(cond_1)
+#'
+#' # downloading
+#' b <- RAhrefs::rah_anchors_refdomains(
+#'   target   = "ahrefs.com",
+#'   limit    = 2,
+#'   where    = cond_where,
+#'   order_by = "anchors:desc")
+#' }
 rah_anchors_refdomains <- function(target,
                                    token = Sys.getenv("AHREFS_AUTH_TOKEN"),
                                    mode = "domain",

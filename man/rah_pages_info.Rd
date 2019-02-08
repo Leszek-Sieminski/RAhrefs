@@ -34,7 +34,7 @@ after authentication with function \code{rah_auth()}}
 \code{"having"} condition to satisfy. See more in Details section}
 }
 \value{
-data frame
+nested list - the structure can be too complicated to convert into simple data frame
 }
 \description{
 Export additional info about the target, such as IP address, canonical URL, social meta tags and social metrics.
@@ -110,6 +110,30 @@ Example of URL directory with subdomain:
               \code{RAhrefs::rah_downloader(target = "ahrefs.com", report = "anchors", token = "0123456789",
               mode = "domain", metrics = NULL, limit = 1000, where = fin_cond, order_by = "first_seen:asc")}
         }
+}
+\examples{
+\dontrun{
+# creating single conditions for 'where' parameter
+cond_1 <- RAhrefs::rah_condition(
+   column_name = "facebook_likes",
+   operator    = "GREATER_OR_EQUAL",
+   value       = "1000")
+
+cond_2 <- RAhrefs::rah_condition(
+   column_name = "facebook_shares",
+   operator    = "GREATER_THAN",
+   value       = "200")
+
+# joining conditions into one condition set
+cond_where <- RAhrefs::rah_condition_set(cond_1, cond_2)
+
+# downloading
+b <- RAhrefs::rah_pages_info(
+  target   = "ahrefs.com",
+  limit    = 2,
+  where    = cond_where,
+  order_by = "ahrefs_rank:desc")
+}
 }
 \seealso{
 Other Ahrefs reports: \code{\link{rah_ahrefs_rank}},

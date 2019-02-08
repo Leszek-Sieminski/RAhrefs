@@ -88,12 +88,34 @@
 #'
 #' @source \url{https://ahrefs.com/api/documentation}
 #'
-#' @return data frame
+#' @return nested list - the structure can be too complicated to convert into simple data frame
 #' @export
 #'
 #' @family Ahrefs reports
 #'
 #' @examples
+#' \dontrun{
+#' # creating single conditions for 'where' parameter
+#' cond_1 <- RAhrefs::rah_condition(
+#'    column_name = "facebook_likes",
+#'    operator    = "GREATER_OR_EQUAL",
+#'    value       = "1000")
+#'
+#' cond_2 <- RAhrefs::rah_condition(
+#'    column_name = "facebook_shares",
+#'    operator    = "GREATER_THAN",
+#'    value       = "200")
+#'
+#' # joining conditions into one condition set
+#' cond_where <- RAhrefs::rah_condition_set(cond_1, cond_2)
+#'
+#' # downloading
+#' b <- RAhrefs::rah_pages_info(
+#'   target   = "ahrefs.com",
+#'   limit    = 2,
+#'   where    = cond_where,
+#'   order_by = "ahrefs_rank:desc")
+#' }
 rah_pages_info <- function(target,
                            token = Sys.getenv("AHREFS_AUTH_TOKEN"),
                            mode = "domain",

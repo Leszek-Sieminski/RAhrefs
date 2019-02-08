@@ -38,7 +38,9 @@ in Details section}
 list or nested list object
 }
 \description{
-Universal downloading helper function for Ahrefs API
+This is a helper function and it \strong{should not be used in most cases}. Use
+    \code{rah_<report_name>()} functions instead as they are specific wrappers that provide
+    full documentation needed for each report.
 }
 \details{
 \strong{1. "mode"} parameter can take 4 different values that will affect how the results will be grouped.
@@ -83,7 +85,8 @@ Example of URL directory with subdomain:
         }
 }
 \examples{
-
+# do not use this function - instead use its wrappers (rah_<report_name>())
+# that have full documentation
 \dontrun{RAhrefs::rah_downloader(
    target  = "ahrefs.com",
    report  = "anchors",

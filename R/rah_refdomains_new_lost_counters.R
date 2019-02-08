@@ -79,6 +79,13 @@
 #' @family Ahrefs reports
 #'
 #' @examples
+#' \dontrun{
+#' # downloading
+#' b <- RAhrefs::rah_refdomains_new_lost_counters(
+#'   target   = "ahrefs.com",
+#'   limit    = 2,
+#'   order_by = "new_total:desc")
+#' }
 rah_refdomains_new_lost_counters <- function(target,
                                              token = Sys.getenv("AHREFS_AUTH_TOKEN"),
                                              mode = "domain",

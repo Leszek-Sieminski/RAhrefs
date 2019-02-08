@@ -75,11 +75,15 @@
 #' @family Ahrefs reports
 #'
 #' @examples
+#' \dontrun{
+#' # downloading
+#' b <- RAhrefs::rah_subscription_info()
+#' }
 rah_subscription_info <- function(target,
-                                  token = Sys.getenv("AHREFS_AUTH_TOKEN"),
-                                  mode = "domain",
-                                  metrics = NULL,
-                                  limit   = 1000,
+                                  token    = Sys.getenv("AHREFS_AUTH_TOKEN"),
+                                  mode     = "domain",
+                                  metrics  = NULL,
+                                  limit    = 1000,
                                   order_by = NULL,
                                   where    = NULL,
                                   having   = NULL

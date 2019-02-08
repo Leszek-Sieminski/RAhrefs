@@ -78,6 +78,28 @@
 #' @family Ahrefs reports
 #'
 #' @examples
+#' \dontrun{
+#' # creating single conditions for 'having' parameter
+#' cond_1 <- RAhrefs::rah_condition(
+#'    column_name = "domain_to_rating",
+#'    operator    = "GREATER_OR_EQUAL",
+#'    value       = "10")
+#'
+#' cond_2 <- RAhrefs::rah_condition(
+#'    column_name = "unique_pages",
+#'    operator    = "GREATER_OR_EQUAL",
+#'    value       = "3")
+#'
+#' # joining conditions into one condition set
+#' cond_having <- RAhrefs::rah_condition_set(cond_1, cond_2)
+#'
+#' # downloading
+#' b <- RAhrefs::rah_linked_domains(
+#'   target   = "ahrefs.com",
+#'   limit    = 2,
+#'   having    = cond_having,
+#'   order_by = "ahrefs_rank:desc")
+#' }
 rah_linked_domains <- function(target,
                                token = Sys.getenv("AHREFS_AUTH_TOKEN"),
                                mode = "domain",

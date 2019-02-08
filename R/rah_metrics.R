@@ -86,11 +86,18 @@
 #' @family Ahrefs reports
 #'
 #' @examples
+#' \dontrun{
+#' # downloading
+#' b <- RAhrefs::rah_metrics(
+#'   target   = "ahrefs.com",
+#'   limit    = 2,,
+#'   order_by = "backlinks:desc")
+#' }
 rah_metrics <- function(target,
-                        token = Sys.getenv("AHREFS_AUTH_TOKEN"),
-                        mode = "domain",
-                        metrics = NULL,
-                        limit   = 1000,
+                        token    = Sys.getenv("AHREFS_AUTH_TOKEN"),
+                        mode     = "domain",
+                        metrics  = NULL,
+                        limit    = 1000,
                         order_by = NULL,
                         where    = NULL,
                         having   = NULL

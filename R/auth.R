@@ -4,10 +4,13 @@
 #' @param api_key character string. Valid API key obtained at: https://ahrefs.com/api/profile
 #' @param verbose logical, defaults to TRUE. Set to FALSE to stop printing status in the console
 #'
-#' @return
+#' @return invisibly returns API token into environment variable AHREFS_AUTH_TOKEN and prints the status
 #' @export
 #'
-#' @examples rah_auth("ABCDEFGHIJKLMNOPQRST")
+#' @examples
+#' \dontrun{
+#'   rah_auth("ABCDEFGHIJKLMNOPQRST")
+#' }
 rah_auth <- function(
   api_key,
   verbose = TRUE

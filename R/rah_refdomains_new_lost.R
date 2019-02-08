@@ -76,6 +76,13 @@
 #' @family Ahrefs reports
 #'
 #' @examples
+#' \dontrun{
+#' # downloading
+#' b <- RAhrefs::rah_refdomains_new_lost(
+#'   target   = "ahrefs.com",
+#'   limit    = 2,
+#'   order_by = "domain_rating:desc")
+#' }
 rah_refdomains_new_lost <- function(target,
                                     token = Sys.getenv("AHREFS_AUTH_TOKEN"),
                                     mode = "domain",
