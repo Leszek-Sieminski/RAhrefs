@@ -1,5 +1,9 @@
-# RAhrefs 0.1.2
+# RAhrefs 0.1.3
+
 R package for SEO specialists which serves as an interface for [Ahrefs](https://ahrefs.com/) API. 
+
+## What is new?
+* 0.1.3 - fixing unproper assertthat usage in helper function
 
 ## What is Ahrefs?
 Ahrefs is a research toolset for backlinks and SEO analysis that enables access to off-site data.

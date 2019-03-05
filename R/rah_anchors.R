@@ -67,7 +67,7 @@
 #'           \item use \code{rah_condition_set()} function to group single conditions into final condition
 #'               string, for example: \code{fin_cond <- rah_condition_set(cond_1, cond_2)}
 #'           \item provide final condition to proper report function as a parameter, for example:
-#'               \code{RAhrefs::rah_downloader(target = "ahrefs.com", report = "anchors", token = "0123456789",
+#'               \code{RAhrefs::rah_anchors(target = "ahrefs.com", token = "0123456789",
 #'               mode = "domain", metrics = NULL, limit = 1000, where = fin_cond, order_by = "first_seen:asc")}
 #'         }
 #'
@@ -113,7 +113,7 @@ rah_anchors <- function(target,
                         where    = NULL,
                         having   = NULL
 ){
-  data_list <- RAhrefs::rah_downloader(
+  data_list <- rah_downloader(
     target  = target,
     report  = "anchors",
     token   = token,
@@ -127,8 +127,9 @@ rah_anchors <- function(target,
   data_df <- do.call(rbind.data.frame, as.list(data_list$anchors))
   index <- sapply(data_df, is.factor)
   data_df[index] <- lapply(data_df[index], as.character)
-  data_df$first_seen <- as.POSIXct(data_df$first_seen, format = "%Y-%m-%dT%H:%M:%OS")
-  data_df$last_visited <- as.POSIXct(data_df$last_visited, format = "%Y-%m-%dT%H:%M:%OS")
+
+  if ("first_seen" %in% colnames(data_df)) {data_df$first_seen <- as.POSIXct(data_df$first_seen, format = "%Y-%m-%dT%H:%M:%OS")}
+  if ("last_visited" %in% colnames(data_df)) {data_df$last_visited <- as.POSIXct(data_df$last_visited, format = "%Y-%m-%dT%H:%M:%OS")}
   return(data_df)
 }
 # b <- rah_anchors(target = "ahrefs.com", limit = 10)

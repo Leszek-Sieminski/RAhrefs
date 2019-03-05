@@ -64,7 +64,7 @@
 #'           \item use \code{rah_condition_set()} function to group single conditions into final condition
 #'               string, for example: \code{fin_cond <- rah_condition_set(cond_1, cond_2)}
 #'           \item provide final condition to proper report function as a parameter, for example:
-#'               \code{RAhrefs::rah_downloader(target = "ahrefs.com", report = "anchors", token = "0123456789",
+#'               \code{RAhrefs::rah_refdomains_new_lost(target = "ahrefs.com", token = "0123456789",
 #'               mode = "domain", metrics = NULL, limit = 1000, where = fin_cond, order_by = "first_seen:asc")}
 #'         }
 #'
@@ -92,7 +92,7 @@ rah_refdomains_new_lost <- function(target,
                                     where    = NULL,
                                     having   = NULL
 ){
-  data_list <- RAhrefs::rah_downloader(
+  data_list <- rah_downloader(
     target  = target,
     report  = "refdomains_new_lost",
     token   = token,
@@ -107,7 +107,7 @@ rah_refdomains_new_lost <- function(target,
 
   index <- sapply(data_df, is.factor)
   data_df[index] <- lapply(data_df[index], as.character)
-  data_df$date <- as.Date(data_df$date)
+  if ("date" %in% colnames(data_df))   {data_df$date <- as.Date(data_df$date)}
   return(data_df)
 }
 
