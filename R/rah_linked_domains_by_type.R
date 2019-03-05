@@ -136,8 +136,12 @@ rah_linked_domains_by_type <- function(target,
 
   index <- sapply(data_df, is.factor)
   data_df[index] <- lapply(data_df[index], as.character)
-  data_df$first_seen <- as.POSIXct(data_df$first_seen, format = "%Y-%m-%dT%H:%M:%OS")
-  data_df$last_visited <- as.POSIXct(data_df$last_visited, format = "%Y-%m-%dT%H:%M:%OS")
+  if ("first_seen" %in% colnames(data_df))   {data_df$first_seen <- as.POSIXct(data_df$first_seen, format = "%Y-%m-%dT%H:%M:%OS")}
+  if ("last_visited" %in% colnames(data_df)) {data_df$last_visited <- as.POSIXct(data_df$last_visited, format = "%Y-%m-%dT%H:%M:%OS")}
+  if ("prev_visited" %in% colnames(data_df)) {data_df$prev_visited <- as.POSIXct(data_df$prev_visited, format = "%Y-%m-%dT%H:%M:%OS")}
+  if ("url_from_first_seen" %in% colnames(data_df)) {data_df$url_from_first_seen <- as.POSIXct(data_df$url_from_first_seen, format = "%Y-%m-%dT%H:%M:%OS")}
+  if ("broken_at" %in% colnames(data_df)) {data_df$broken_at <- as.POSIXct(data_df$broken_at, format = "%Y-%m-%dT%H:%M:%OS")}
+
   return(data_df)
 }
 

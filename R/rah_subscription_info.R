@@ -102,8 +102,8 @@ rah_subscription_info <- function(target,
   data_df <- data.frame(t(sapply(data_list, unlist)))
   index <- sapply(data_df, is.factor)
   data_df[index] <- lapply(data_df[index], as.character)
-  data_df$rows_left  <- as.integer(data_df$rows_left)
-  data_df$rows_limit <- as.integer(data_df$rows_limit)
+  if ("rows_left" %in% colnames(data_df)) {data_df$rows_left  <- as.integer(data_df$rows_left)}
+  if ("rows_limit" %in% colnames(data_df)) {data_df$rows_limit <- as.integer(data_df$rows_limit)}
   return(data_df)
 }
 

@@ -32,6 +32,7 @@
 #'           \code{rah_condition("first_seen", "LESS_THAN", "2019-01-01", is_date = TRUE)}
 #'     }
 #'
+#' @import assertthat
 #' @return character string with formatted condition
 #' @export
 #'
@@ -48,26 +49,26 @@
 #'                            value = "10")
 #' }
 rah_condition <- function(column_name, operator, value, is_date = FALSE){
-  assertthat::assert_that(is.logical(is_date))
-  assertthat::not_empty(column_name)
-  assertthat::not_empty(operator)
-  assertthat::not_empty(value)
-  assertthat::not_empty(is_date)
-  assertthat::assert_that(!is.null(column_name))
-  assertthat::assert_that(!is.null(operator))
-  assertthat::assert_that(!is.null(value))
-  assertthat::assert_that(!is.null(is_date))
-  assertthat::assert_that(!is.na(column_name))
-  assertthat::assert_that(!is.na(operator))
-  assertthat::assert_that(!is.na(value))
-  assertthat::assert_that(!is.na(is_date))
-  assertthat::is.string(column_name)
-  assertthat::assert_that(
-    operator %in% c("EQUALS", "UNEQUALS", "LESS_THAN",
-                    "LESS_OR_EQUAL", "GREATER_THAN",
-                    "GREATER_OR_EQUAL", "SUBDOMAIN",
-                    "SUBSTRING", "WORD"))
-  assertthat::assert_that(length(operator) == 1)
+  assert_that(is.logical(is_date),     # date
+              not_empty(is_date),
+              !is.na(is_date),
+              !is.null(is_date),
+              not_empty(column_name),  # column_name
+              !is.null(column_name),
+              !is.na(column_name),
+              is.string(column_name),
+              not_empty(value),        # value
+              !is.null(value),
+              !is.na(value),
+              not_empty(operator),     # operator
+              !is.null(operator),
+              !is.na(operator),
+              operator %in% c("EQUALS", "UNEQUALS", "LESS_THAN",
+                              "LESS_OR_EQUAL", "GREATER_THAN",
+                              "GREATER_OR_EQUAL", "SUBDOMAIN",
+                              "SUBSTRING", "WORD"),
+              length(operator) == 1
+              )
 
   if(!is_date){
     x <- switch(

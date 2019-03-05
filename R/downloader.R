@@ -64,6 +64,7 @@
 #'
 #' @return list or nested list object
 #'
+#' @import assertthat
 #'
 #' @examples
 #' # do not use this function - instead use its wrappers (rah_<report_name>())
@@ -108,69 +109,42 @@ rah_downloader <- function(target,
   # modes list ----------------------------------------------------------------
   mode_vector <- c("exact", "domain", "subdomains", "prefix")
 
-  # safety net: target --------------------------------------------------------
-  assertthat::assert_that(!is.null(target))
-  assertthat::assert_that(!is.na(target))
-  assertthat::is.string(target)
-  assertthat::assert_that(
-    grepl("\\.", target),
-    msg = "No dot ('.') is detected in parameter 'target'. Is it a proper URL address?")
+  # safety net --------------------------------------------------------
+  assert_that(!is.null(target),     # target
+              !is.na(target),
+              is.string(target),
+              grepl("\\.", target),
+              !is.null(report),     # report
+              !is.na(report),
+              is.string(report),
+              report %in% report_vector,
+              !is.null(token),      # token
+              !is.na(token),
+              is.string(token),
+              nchar(token) > 30,
+              !is.null(mode),       # mode
+              !is.na(mode),
+              is.string(mode),
+              mode %in% mode_vector,
+              is.null(metrics) | is.vector(metrics, mode = "character"), # metrics
+              # if (!is.null(metrics)) {is.vector(metrics, mode = "character")}, # metrics
+              limit >= 1,           # limit
+              limit %% 1 == 0,
+              is.number(limit)
+              # !is.na(having),     # having
+              # is.string(having),
+              # !is.na(where),      # where
+              # is.string(where)
+              )
 
-  # safety net: report --------------------------------------------------------
-  assertthat::assert_that(!is.null(report))
-  assertthat::assert_that(!is.na(report))
-  assertthat::is.string(report)
-  assertthat::assert_that(report %in% report_vector)
-
-  # safety net: token ---------------------------------------------------------
-  assertthat::assert_that(!is.null(token))
-  assertthat::assert_that(!is.na(token))
-  assertthat::is.string(token)
-  assertthat::assert_that(
-    nchar(token) > 30,
-    msg = "'token' parameter is too short. Is your API token correct?")
-
-  # safety net: mode ----------------------------------------------------------
-  assertthat::assert_that(!is.null(mode))
-  assertthat::assert_that(!is.na(mode))
-  assertthat::is.string(mode)
-  assertthat::assert_that(mode %in% mode_vector)
-
-  # safety net: metrics -------------------------------------------------------
-  # assertthat::assert_that(!is.na(metrics))
-  if(!is.null(metrics)) {
-    assertthat::assert_that(
-      is.vector(metrics, mode = "character"),
-      msg = "'metrics' parameter must be a character vector")
-  } #else {metrics <- '*'}
-
-  # safety net: limit ---------------------------------------------------------
-  assertthat::is.number(limit)
-  assertthat::assert_that(limit >= 1)
-  assertthat::assert_that(
-    limit %% 1 == 0,
-    msg = "Parameter 'limit' must be a natural number (no fractions allowed).")
-
-
-  # safety net: order_by ------------------------------------------------------
-  # assertthat::assert_that(!is.na(order_by))
-  # assertthat::is.string(order_by)
-
-  if(!is.null(order_by)) {
-    if(grepl("\\:", order_by)) {
+  # order_by preparation ------------------------------------------------------
+  if (!is.null(order_by)) {
+    if (grepl("\\:", order_by)) {
       order_by <- gsub(pattern     = "\\:",
                        replacement = "%3A",
                        order_by)
     }
   }
-
-    # safety net: where ---------------------------------------------------------
-  # assertthat::assert_that(!is.na(where))
-  # assertthat::is.string(where)
-
-  # safety net: having --------------------------------------------------------
-  # assertthat::assert_that(!is.na(having))
-  # assertthat::is.string(having)
 
   # downloading ---------------------------------------------------------------
   response <- httr::GET(paste0(
@@ -179,7 +153,7 @@ rah_downloader <- function(target,
     "&from=",   report,
     "&target=", target,
     "&mode=",   mode,
-    if (!is.null(metrics)) {paste0("&select=",   metrics)},
+    if (!is.null(metrics)) {paste0("&select=",   paste(metrics, collapse = ","))},
     "&limit=",  limit,
     "&output=json",
     if (!is.null(where))   {paste0("&where=",    where)},

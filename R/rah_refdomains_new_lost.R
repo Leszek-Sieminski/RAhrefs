@@ -107,7 +107,7 @@ rah_refdomains_new_lost <- function(target,
 
   index <- sapply(data_df, is.factor)
   data_df[index] <- lapply(data_df[index], as.character)
-  data_df$date <- as.Date(data_df$date)
+  if ("date" %in% colnames(data_df))   {data_df$date <- as.Date(data_df$date)}
   return(data_df)
 }
 
