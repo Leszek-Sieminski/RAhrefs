@@ -1,5 +1,6 @@
 # RAhrefs 0.1.3
 [![Build Status](https://travis-ci.org/Leszek-Sieminski/RAhrefs.svg?branch=master)](https://travis-ci.org/Leszek-Sieminski/RAhrefs)
+[![codecov](https://codecov.io/gh/Leszek-Sieminski/RAhrefs/branch/master/graph/badge.svg)](https://codecov.io/gh/Leszek-Sieminski/RAhrefs)
 
 R package for SEO specialists which serves as an interface for [Ahrefs](https://ahrefs.com/) API. 
 
