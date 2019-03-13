@@ -4,3 +4,4 @@
 testy.R
 tabular_fun.R
 .travis.yml
+appveyor.yml
