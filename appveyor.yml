@@ -21,15 +21,15 @@ install:
 
 # Adapt as necessary starting from here
 
-environment:
-  global:
-    WARNINGS_ARE_ERRORS: 1
-    _R_CHECK_SYSTEM_CLOCK_: FALSE
-
-  matrix:
-  - R_VERSION: 3.4.4
-    R_ARCH: x64
-    GCC_PATH: mingw_64
+#environment:
+#  global:
+#    WARNINGS_ARE_ERRORS: 1
+#    _R_CHECK_SYSTEM_CLOCK_: FALSE
+#
+#  matrix:
+#  - R_VERSION: 3.4.4
+#    R_ARCH: x64
+#    GCC_PATH: mingw_64
 
 matrix:
   fast_finish: true
