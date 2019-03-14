@@ -5,11 +5,11 @@
 
 R package for SEO specialists which serves as an interface for [Ahrefs](https://ahrefs.com/) API. 
 
-## What is new?
-* 0.1.3 - fixing unproper assertthat usage in helper function
-
 ## What is Ahrefs?
 Ahrefs is a research toolset for backlinks and SEO analysis that enables access to off-site data.
+
+## News
+* 0.1.3 - fixing unproper assertthat usage in helper function
 
 ## Features
 * Authenticate with an API key 
@@ -135,3 +135,8 @@ str(ahrefs_data)
 # >  $ last_visited: POSIXct, format: "2019-01-05 10:37:13" "2015-11-22 14:30:18"
 ```
 
+## Other Ahrefs API packages:
+* PHP - [ahrefs/ahrefs-api-php](https://github.com/ahrefs/ahrefs-api-php)
+* R   - [mhairi/ahrefs](https://github.com/mhairi/ahrefs)
+* Node JS - [ybonnefond/node-ahrefs](https://github.com/ybonnefond/node-ahrefs)
+* Python - [spremotely/ahrefs-api-python](https://github.com/spremotely/ahrefs-api-python)
