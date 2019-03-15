@@ -1,7 +1,10 @@
 # RAhrefs 0.1.3
 [![Build Status](https://travis-ci.org/Leszek-Sieminski/RAhrefs.svg?branch=master)](https://travis-ci.org/Leszek-Sieminski/RAhrefs)
 [![Build status](https://ci.appveyor.com/api/projects/status/5502p5f854fv5dtc?svg=true)](https://ci.appveyor.com/project/Leszek-Sieminski/rahrefs)
+[![openissues](https://img.shields.io/github/issues/Leszek-Sieminski/RAhrefs.svg)](https://github.com/Leszek-Sieminski/RAhrefs/issues)
 [![codecov](https://codecov.io/gh/Leszek-Sieminski/RAhrefs/branch/master/graph/badge.svg)](https://codecov.io/gh/Leszek-Sieminski/RAhrefs)
+[![codesize](https://img.shields.io/github/languages/code-size/Leszek-Sieminski/RAhrefs.svg)](https://github.com/Leszek-Sieminski/RAhrefs)
+
 
 R package for SEO specialists which serves as an interface for [Ahrefs](https://ahrefs.com/) API. 
 
