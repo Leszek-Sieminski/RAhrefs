@@ -5,8 +5,6 @@
 \title{Export the referring IP addresses that have at least one link to the target.}
 \source{
 \url{https://ahrefs.com/api/documentation}
-
-\url{https://ahrefs.com/api/documentation}
 }
 \usage{
 rah_refips(target, token = Sys.getenv("AHREFS_AUTH_TOKEN"),

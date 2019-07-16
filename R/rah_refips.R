@@ -67,8 +67,6 @@
 #'               mode = "domain", metrics = NULL, limit = 1000, where = fin_cond, order_by = "first_seen:asc")}
 #'         }
 #'
-#' @source \url{https://ahrefs.com/api/documentation}
-#'
 #' @return data frame
 #' @export
 #'
@@ -82,22 +80,23 @@
 #'   limit    = 2,
 #'   order_by = "backlinks:desc")
 #' }
-rah_refips <- function(target,
-                       token = Sys.getenv("AHREFS_AUTH_TOKEN"),
-                       mode = "domain",
-                       metrics = NULL,
-                       limit   = 1000,
-                       order_by = NULL,
-                       where    = NULL,
-                       having   = NULL
-){
+rah_refips <- function(
+  target,
+  token    = Sys.getenv("AHREFS_AUTH_TOKEN"),
+  mode     = "domain",
+  metrics  = NULL,
+  limit    = 1000,
+  order_by = NULL,
+  where    = NULL,
+  having   = NULL)
+{
   data_list <- rah_downloader(
-    target  = target,
-    report  = "refips",
-    token   = token,
-    mode    = mode,
-    metrics = metrics,
-    limit   = limit,
+    target   = target,
+    report   = "refips",
+    token    = token,
+    mode     = mode,
+    metrics  = metrics,
+    limit    = limit,
     order_by = order_by,
     where    = where,
     having   = having)

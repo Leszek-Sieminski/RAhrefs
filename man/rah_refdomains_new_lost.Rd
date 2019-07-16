@@ -5,8 +5,6 @@
 \title{Export the new or lost referring domains and their details.}
 \source{
 \url{https://ahrefs.com/api/documentation}
-
-\url{https://ahrefs.com/api/documentation}
 }
 \usage{
 rah_refdomains_new_lost(target, token = Sys.getenv("AHREFS_AUTH_TOKEN"),

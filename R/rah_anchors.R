@@ -114,12 +114,12 @@ rah_anchors <- function(target,
                         having   = NULL
 ){
   data_list <- rah_downloader(
-    target  = target,
-    report  = "anchors",
-    token   = token,
-    mode    = mode,
-    metrics = metrics,
-    limit   = limit,
+    target   = target,
+    report   = "anchors",
+    token    = token,
+    mode     = mode,
+    metrics  = metrics,
+    limit    = limit,
     order_by = order_by,
     where    = where,
     having   = having)

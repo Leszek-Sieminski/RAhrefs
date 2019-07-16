@@ -68,8 +68,6 @@
 #'               mode = "domain", metrics = NULL, limit = 1000, where = fin_cond, order_by = "first_seen:asc")}
 #'         }
 #'
-#' @source \url{https://ahrefs.com/api/documentation}
-#'
 #' @return data frame
 #' @export
 #'
@@ -98,15 +96,16 @@
 #'   having    = cond_having,
 #'   order_by = "ahrefs_rank:desc")
 #' }
-rah_domain_rating <- function(target,
-                              token = Sys.getenv("AHREFS_AUTH_TOKEN"),
-                              mode = "domain",
-                              metrics = NULL,
-                              limit   = 1000,
-                              order_by = NULL,
-                              where    = NULL,
-                              having   = NULL
-){
+rah_domain_rating <- function(
+  target,
+  token = Sys.getenv("AHREFS_AUTH_TOKEN"),
+  mode = "domain",
+  metrics = NULL,
+  limit   = 1000,
+  order_by = NULL,
+  where    = NULL,
+  having   = NULL)
+{
   data_list <- rah_downloader(
     target  = target,
     report  = "domain_rating",

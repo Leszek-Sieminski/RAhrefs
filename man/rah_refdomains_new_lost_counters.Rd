@@ -5,8 +5,6 @@
 \title{Export new and lost domains totals.}
 \source{
 \url{https://ahrefs.com/api/documentation}
-
-\url{https://ahrefs.com/api/documentation}
 }
 \usage{
 rah_refdomains_new_lost_counters(target,

@@ -65,6 +65,10 @@
 #' @return list or nested list object
 #'
 #' @import assertthat
+#' @importFrom httr GET
+#' @importFrom httr stop_for_status
+#' @importFrom httr content
+#' @importFrom jsonlite fromJSON
 #'
 #' @examples
 #' # do not use this function - instead use its wrappers (rah_<report_name>())
@@ -109,45 +113,26 @@ rah_downloader <- function(target,
   # modes list ----------------------------------------------------------------
   mode_vector <- c("exact", "domain", "subdomains", "prefix")
 
-  # safety net --------------------------------------------------------
-  assert_that(!is.null(target),     # target
-              !is.na(target),
-              is.string(target),
-              grepl("\\.", target),
-              !is.null(report),     # report
-              !is.na(report),
-              is.string(report),
-              report %in% report_vector,
-              !is.null(token),      # token
-              !is.na(token),
-              is.string(token),
-              nchar(token) > 30,
-              !is.null(mode),       # mode
-              !is.na(mode),
-              is.string(mode),
-              mode %in% mode_vector,
-              is.null(metrics) | is.vector(metrics, mode = "character"), # metrics
-              # if (!is.null(metrics)) {is.vector(metrics, mode = "character")}, # metrics
-              limit >= 1,           # limit
-              limit %% 1 == 0,
-              is.number(limit)
-              # !is.na(having),     # having
-              # is.string(having),
-              # !is.na(where),      # where
-              # is.string(where)
-              )
+  # safety net ----------------------------------------------------------------
+  assert_that(
+    !is.null(target), !is.na(target), is.string(target), grepl("\\.", target),
+    !is.null(report), !is.na(report), is.string(report),
+    report %in% report_vector, !is.null(token), !is.na(token),
+    is.string(token), nchar(token) > 30, !is.null(mode), !is.na(mode),
+    is.string(mode), mode %in% mode_vector,
+    is.null(metrics) | is.vector(metrics, mode = "character"), limit >= 1,
+    limit %% 1 == 0, is.number(limit)
+  )
 
   # order_by preparation ------------------------------------------------------
   if (!is.null(order_by)) {
     if (grepl("\\:", order_by)) {
-      order_by <- gsub(pattern     = "\\:",
-                       replacement = "%3A",
-                       order_by)
+      order_by <- gsub("\\:", "%3A", order_by)
     }
   }
 
   # downloading ---------------------------------------------------------------
-  response <- httr::GET(paste0(
+  response <- GET(paste0(
     "https://apiv2.ahrefs.com/",
     "?token=",  token,
     "&from=",   report,
@@ -161,8 +146,8 @@ rah_downloader <- function(target,
     if (!is.null(order_by)){paste0("&order_by=", order_by)}
   ))
 
-  httr::stop_for_status(response)
-  content <- httr::content(response, type = "text", encoding = "UTF-8")
-  result  <- jsonlite::fromJSON(content, simplifyVector = FALSE)
+  stop_for_status(response)
+  content <- content(response, type = "text", encoding = "UTF-8")
+  result  <- fromJSON(content, simplifyVector = FALSE)
   return(result)
 }

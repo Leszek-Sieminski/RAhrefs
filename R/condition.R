@@ -49,26 +49,16 @@
 #'                            value = "10")
 #' }
 rah_condition <- function(column_name, operator, value, is_date = FALSE){
-  assert_that(is.logical(is_date),     # date
-              not_empty(is_date),
-              !is.na(is_date),
-              !is.null(is_date),
-              not_empty(column_name),  # column_name
-              !is.null(column_name),
-              !is.na(column_name),
-              is.string(column_name),
-              not_empty(value),        # value
-              !is.null(value),
-              !is.na(value),
-              not_empty(operator),     # operator
-              !is.null(operator),
-              !is.na(operator),
-              operator %in% c("EQUALS", "UNEQUALS", "LESS_THAN",
-                              "LESS_OR_EQUAL", "GREATER_THAN",
-                              "GREATER_OR_EQUAL", "SUBDOMAIN",
-                              "SUBSTRING", "WORD"),
-              length(operator) == 1
-              )
+  # safety net ----------------------------------------------------------------
+  assert_that(
+    is.logical(is_date), not_empty(is_date), !is.na(is_date), !is.null(is_date),
+    not_empty(column_name), !is.null(column_name), !is.na(column_name),
+    is.string(column_name), not_empty(value), !is.null(value), !is.na(value),
+    not_empty(operator), !is.null(operator), !is.na(operator),
+    operator %in% c("EQUALS", "UNEQUALS", "LESS_THAN", "LESS_OR_EQUAL",
+                    "GREATER_THAN", "GREATER_OR_EQUAL", "SUBDOMAIN", "SUBSTRING",
+                    "WORD"), length(operator) == 1
+  )
 
   if(!is_date){
     x <- switch(
