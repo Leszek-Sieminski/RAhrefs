@@ -4,8 +4,8 @@ r_packages:
   - covr
 
 script:
-- R CMD build .
-- R CMD check *tar.gz
+  - R CMD build .
+  - R CMD check *tar.gz
 
 after_success:
-  - Rscript -e 'library(covr); covr::codecov(token = Sys.getenv("CODECOV_TOKEN")) #codecov()'
+  - Rscript -e 'library(covr); covr::codecov(token = Sys.getenv("CODECOV_TOKEN"))'

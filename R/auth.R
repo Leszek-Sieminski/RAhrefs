@@ -27,21 +27,14 @@ rah_auth <- function(
     noNA(verbose), not_empty(verbose), assert_that(is.logical(verbose)))
 
   # connecting to auth endpoint -----------------------------------------------
-  # x <- GET(url = 'https://apiv2.ahrefs.com/',
-  #          add_headers(token = api_key))
-
   response <- GET(url = paste0(
     "https://apiv2.ahrefs.com/",
     "?token=",  api_key,
     "&from=",   "anchors",
     "&target=", "ahrefs.com",
     "&mode=",   "domain",
-    # if (!is.null(metrics)) {paste0("&select=",   paste(metrics, collapse = ","))},
     "&limit=",  2,
-    "&output=json"#,
-    # if (!is.null(where))   {paste0("&where=",    where)},
-    # if (!is.null(having))  {paste0("&having=",   having)},
-    # if (!is.null(order_by)){paste0("&order_by=", order_by)}
+    "&output=json"
   ))
 
   # stop_for_status(response)
@@ -59,7 +52,6 @@ rah_auth <- function(
     result  <- fromJSON(content, simplifyVector = FALSE)
     no_hidden_error <- !("error" %in% names(jsonlite::fromJSON(httr::content(response, as = "text"))))
   }
-  # is_df <- is.data.frame(result)
 
   # saving enviromental variable ----------------------------------------------
   if (http_status_200 & no_hidden_error){
