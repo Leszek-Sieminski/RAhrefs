@@ -1,12 +1,18 @@
 # RAhrefs 0.1.3
+[![Build Status](https://travis-ci.org/Leszek-Sieminski/RAhrefs.svg?branch=master)](https://travis-ci.org/Leszek-Sieminski/RAhrefs)
+[![Build status](https://ci.appveyor.com/api/projects/status/5502p5f854fv5dtc?svg=true)](https://ci.appveyor.com/project/Leszek-Sieminski/rahrefs)
+[![openissues](https://img.shields.io/github/issues/Leszek-Sieminski/RAhrefs.svg)](https://github.com/Leszek-Sieminski/RAhrefs/issues)
+[![codecov](https://codecov.io/gh/Leszek-Sieminski/RAhrefs/branch/master/graph/badge.svg)](https://codecov.io/gh/Leszek-Sieminski/RAhrefs)
+[![codesize](https://img.shields.io/github/languages/code-size/Leszek-Sieminski/RAhrefs.svg)](https://github.com/Leszek-Sieminski/RAhrefs)
+
 
 R package for SEO specialists which serves as an interface for [Ahrefs](https://ahrefs.com/) API. 
 
-## What is new?
-* 0.1.3 - fixing unproper assertthat usage in helper function
-
 ## What is Ahrefs?
 Ahrefs is a research toolset for backlinks and SEO analysis that enables access to off-site data.
+
+## News
+* 0.1.3 - fixing unproper assertthat usage in helper function
 
 ## Features
 * Authenticate with an API key 
@@ -132,3 +138,8 @@ str(ahrefs_data)
 # >  $ last_visited: POSIXct, format: "2019-01-05 10:37:13" "2015-11-22 14:30:18"
 ```
 
+## Other Ahrefs API packages:
+* PHP - [ahrefs/ahrefs-api-php](https://github.com/ahrefs/ahrefs-api-php)
+* R   - [mhairi/ahrefs](https://github.com/mhairi/ahrefs)
+* Node JS - [ybonnefond/node-ahrefs](https://github.com/ybonnefond/node-ahrefs)
+* Python - [spremotely/ahrefs-api-python](https://github.com/spremotely/ahrefs-api-python)
