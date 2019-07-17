@@ -104,15 +104,16 @@
 #'   where    = cond_where,
 #'   order_by = "refpages:desc")
 #' }
-rah_anchors <- function(target,
-                        token    = Sys.getenv("AHREFS_AUTH_TOKEN"),
-                        mode     = "domain",
-                        metrics  = NULL,
-                        limit    = 1000,
-                        order_by = NULL,
-                        where    = NULL,
-                        having   = NULL
-){
+rah_anchors <- function(
+  target,
+  token    = Sys.getenv("AHREFS_AUTH_TOKEN"),
+  mode     = "domain",
+  metrics  = NULL,
+  limit    = 1000,
+  order_by = NULL,
+  where    = NULL,
+  having   = NULL)
+{
   data_list <- rah_downloader(
     target   = target,
     report   = "anchors",
