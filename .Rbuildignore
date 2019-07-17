@@ -3,3 +3,7 @@
 1.R
 testy.R
 tabular_fun.R
+RAhrefs.Rproj
+helper_authorization\.R
+.travis.yml
+appveyor.yml
