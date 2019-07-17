@@ -5,8 +5,6 @@
 \title{Export user subscription information.}
 \source{
 \url{https://ahrefs.com/api/documentation}
-
-\url{https://ahrefs.com/api/documentation}
 }
 \usage{
 rah_subscription_info(target, token = Sys.getenv("AHREFS_AUTH_TOKEN"),

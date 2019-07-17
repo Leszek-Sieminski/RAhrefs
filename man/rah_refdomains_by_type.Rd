@@ -5,8 +5,6 @@
 \title{Export the referring domains that contain backlinks to the target.}
 \source{
 \url{https://ahrefs.com/api/documentation}
-
-\url{https://ahrefs.com/api/documentation}
 }
 \usage{
 rah_refdomains_by_type(target, token = Sys.getenv("AHREFS_AUTH_TOKEN"),

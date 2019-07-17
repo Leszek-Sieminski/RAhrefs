@@ -5,8 +5,6 @@
 \title{Export the Domain Rating.}
 \source{
 \url{https://ahrefs.com/api/documentation}
-
-\url{https://ahrefs.com/api/documentation}
 }
 \usage{
 rah_domain_rating(target, token = Sys.getenv("AHREFS_AUTH_TOKEN"),

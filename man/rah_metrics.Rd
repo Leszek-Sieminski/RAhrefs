@@ -5,8 +5,6 @@
 \title{Export metrics about the target, such as total number of backlinks, referring pages, etc., that are similar to the Site Explorer Overview page with the addition of stats for total number of HTML pages, internal and external links.}
 \source{
 \url{https://ahrefs.com/api/documentation}
-
-\url{https://ahrefs.com/api/documentation}
 }
 \usage{
 rah_metrics(target, token = Sys.getenv("AHREFS_AUTH_TOKEN"),

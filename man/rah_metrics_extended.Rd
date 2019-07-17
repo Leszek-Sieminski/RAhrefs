@@ -5,8 +5,6 @@
 \title{Export additional metrics about the target, such as total number of referring domains, referring class C networks and referring IP addresses.}
 \source{
 \url{https://ahrefs.com/api/documentation}
-
-\url{https://ahrefs.com/api/documentation}
 }
 \usage{
 rah_metrics_extended(target, token = Sys.getenv("AHREFS_AUTH_TOKEN"),

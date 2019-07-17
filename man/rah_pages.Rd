@@ -5,8 +5,6 @@
 \title{Export the crawled pages.}
 \source{
 \url{https://ahrefs.com/api/documentation}
-
-\url{https://ahrefs.com/api/documentation}
 }
 \usage{
 rah_pages(target, token = Sys.getenv("AHREFS_AUTH_TOKEN"),

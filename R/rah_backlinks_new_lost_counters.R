@@ -91,7 +91,6 @@
 #'               mode = "domain", metrics = NULL, limit = 1000, where = fin_cond, order_by = "first_seen:asc")}
 #'         }
 #'
-#' @source \url{https://ahrefs.com/api/documentation}
 #'
 #' @return data frame
 #' @export
@@ -122,15 +121,16 @@
 #'   where    = cond_where,
 #'   order_by = "links_external:desc")
 #' }
-rah_backlinks_new_lost_counters <- function(target,
-                                            token    = Sys.getenv("AHREFS_AUTH_TOKEN"),
-                                            mode     = "domain",
-                                            metrics  = NULL,
-                                            limit    = 1000,
-                                            order_by = NULL,
-                                            where    = NULL,
-                                            having   = NULL
-){
+rah_backlinks_new_lost_counters <- function(
+  target,
+  token    = Sys.getenv("AHREFS_AUTH_TOKEN"),
+  mode     = "domain",
+  metrics  = NULL,
+  limit    = 1000,
+  order_by = NULL,
+  where    = NULL,
+  having   = NULL)
+{
   data_list <- rah_downloader(
     target   = target,
     report   = "backlinks_new_lost_counters",

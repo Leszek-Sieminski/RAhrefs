@@ -86,8 +86,6 @@
 #'               mode = "domain", metrics = NULL, limit = 1000, where = fin_cond, order_by = "first_seen:asc")}
 #'         }
 #'
-#' @source \url{https://ahrefs.com/api/documentation}
-#'
 #' @return nested list - the structure can be too complicated to convert into simple data frame
 #' @export
 #'
@@ -116,22 +114,23 @@
 #'   where    = cond_where,
 #'   order_by = "ahrefs_rank:desc")
 #' }
-rah_pages_info <- function(target,
-                           token = Sys.getenv("AHREFS_AUTH_TOKEN"),
-                           mode = "domain",
-                           metrics = NULL,
-                           limit = 1000,
-                           order_by = NULL,
-                           where    = NULL,
-                           having   = NULL
-){
+rah_pages_info <- function(
+  target,
+  token    = Sys.getenv("AHREFS_AUTH_TOKEN"),
+  mode     = "domain",
+  metrics  = NULL,
+  limit    = 1000,
+  order_by = NULL,
+  where    = NULL,
+  having   = NULL)
+{
   data_list <- rah_downloader(
-    target  = target,
-    report  = "pages_info",
-    token   = token,
-    mode    = mode,
-    metrics = metrics,
-    limit   = limit,
+    target   = target,
+    report   = "pages_info",
+    token    = token,
+    mode     = mode,
+    metrics  = metrics,
+    limit    = limit,
     order_by = order_by,
     where    = where,
     having   = having)

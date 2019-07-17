@@ -6,7 +6,8 @@ Depends: R (>= 3.5.0)
 Imports: 
     assertthat, 
     httr, 
-    jsonlite
+    jsonlite,
+    testthat
 Author: Leszek Siemiński [aut, cre]
 Maintainer: Leszek Siemiński <leszek.sieminski@gmail.com>
 Description: Interface for interaction with the Ahrefs.com API through R.

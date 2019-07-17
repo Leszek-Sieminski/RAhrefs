@@ -5,8 +5,6 @@
 \title{Export additional info about the target, such as IP address, canonical URL, social meta tags and social metrics.}
 \source{
 \url{https://ahrefs.com/api/documentation}
-
-\url{https://ahrefs.com/api/documentation}
 }
 \usage{
 rah_pages_info(target, token = Sys.getenv("AHREFS_AUTH_TOKEN"),

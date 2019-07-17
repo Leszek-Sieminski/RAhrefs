@@ -5,8 +5,6 @@
 \title{Export the anchor text and the number of outgoing links that have it.}
 \source{
 \url{https://ahrefs.com/api/documentation}
-
-\url{https://ahrefs.com/api/documentation}
 }
 \usage{
 rah_linked_anchors(target, token = Sys.getenv("AHREFS_AUTH_TOKEN"),
