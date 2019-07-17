@@ -44,13 +44,21 @@ rah_auth <- function(
     # if (!is.null(order_by)){paste0("&order_by=", order_by)}
   ))
 
-  stop_for_status(response)
-  content <- content(response, type = "text", encoding = "UTF-8")
-  result  <- fromJSON(content, simplifyVector = FALSE)
+  # stop_for_status(response)
+  # content <- content(response, type = "text", encoding = "UTF-8")
+  # result  <- fromJSON(content, simplifyVector = FALSE)
 
   # api_key sanity check ------------------------------------------------------
+  http_status_200 <- FALSE
+  no_hidden_error <- FALSE
+  
   http_status_200 <- response$status_code == 200
-  no_hidden_error <- !("error" %in% names(jsonlite::fromJSON(httr::content(response, as = "text"))))
+  
+  if (http_status_200) {
+    content <- content(response, type = "text", encoding = "UTF-8")
+    result  <- fromJSON(content, simplifyVector = FALSE)
+    no_hidden_error <- !("error" %in% names(jsonlite::fromJSON(httr::content(response, as = "text"))))
+  }
   # is_df <- is.data.frame(result)
 
   # saving enviromental variable ----------------------------------------------
