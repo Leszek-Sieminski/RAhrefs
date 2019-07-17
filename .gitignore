@@ -3,3 +3,4 @@
 .RData
 .Ruserdata
 *.csv
+helper_authorization\.R

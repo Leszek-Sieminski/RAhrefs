@@ -5,8 +5,6 @@
 \title{Export the external domains that the target has links to.}
 \source{
 \url{https://ahrefs.com/api/documentation}
-
-\url{https://ahrefs.com/api/documentation}
 }
 \usage{
 rah_linked_domains_by_type(target,

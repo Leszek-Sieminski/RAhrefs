@@ -5,8 +5,6 @@
 \title{Export the backlinks and details of the referring pages, such as anchor and page title.}
 \source{
 \url{https://ahrefs.com/api/documentation}
-
-\url{https://ahrefs.com/api/documentation}
 }
 \usage{
 rah_backlinks_one_per_domain(target,

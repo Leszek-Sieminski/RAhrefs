@@ -100,22 +100,23 @@
 #'   having    = cond_having,
 #'   order_by = "ahrefs_rank:desc")
 #' }
-rah_linked_domains <- function(target,
-                               token = Sys.getenv("AHREFS_AUTH_TOKEN"),
-                               mode = "domain",
-                               metrics = NULL,
-                               limit   = 1000,
-                               order_by = NULL,
-                               where    = NULL,
-                               having   = NULL
-){
+rah_linked_domains <- function(
+  target,
+  token    = Sys.getenv("AHREFS_AUTH_TOKEN"),
+  mode     = "domain",
+  metrics  = NULL,
+  limit    = 1000,
+  order_by = NULL,
+  where    = NULL,
+  having   = NULL)
+{
   data_list <- rah_downloader(
-    target  = target,
-    report  = "linked_domains",
-    token   = token,
-    mode    = mode,
-    metrics = metrics,
-    limit   = limit,
+    target   = target,
+    report   = "linked_domains",
+    token    = token,
+    mode     = mode,
+    metrics  = metrics,
+    limit    = limit,
     order_by = order_by,
     where    = where,
     having   = having)
