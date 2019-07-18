@@ -8,3 +8,4 @@ helper_authorization\.R
 \.travis\.yml
 appveyor\.yml
 cran-comments\.md
+^CRAN-RELEASE$
