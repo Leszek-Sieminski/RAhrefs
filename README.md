@@ -27,7 +27,7 @@ Ahrefs is a research toolset for backlinks and SEO analysis that enables access 
 ## News
 For more, see the [NEWS.md](https://github.com/Leszek-Sieminski/RAhrefs/blob/master/NEWS.md)
 * 0.1.4 - fixing condition creating function - there was an error with regex-like operators
-* 0.1.3 - fixing unproper assertthat usage in helper function
+* 0.1.3 - fixing wrong assertthat usage in helper function
 
 ## Features
 * Authenticate with an API key 
