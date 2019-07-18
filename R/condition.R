@@ -69,9 +69,9 @@ rah_condition <- function(column_name, operator, value, is_date = FALSE){
       "LESS_OR_EQUAL"    = paste0(column_name, "%3C%3D", value), # "<="
       "GREATER_THAN"     = paste0(column_name, "%3E",    value), # ">"
       "GREATER_OR_EQUAL" = paste0(column_name, "%3E%3D", value), # ">="
-      "SUBDOMAIN"        = paste0("subdomain", column_name, ",%22", value, "%22"), # subdomain(<column>,'<domain>')
-      "SUBSTRING"        = paste0("substring", column_name, ",%22", value, "%22"), # substring(<column>,'<value>')
-      "WORD"             = paste0("word",      column_name, ",%22", value, "%22")  # word(<column>,'<data>')
+      "SUBDOMAIN"        = paste0("subdomain%28", column_name, ",%22", value, "%22%29"), # subdomain(<column>,'<domain>')
+      "SUBSTRING"        = paste0("substring%28", column_name, ",%22", value, "%22%29"), # substring(<column>,'<value>')
+      "WORD"             = paste0("word%28",      column_name, ",%22", value, "%22%29")  # word(<column>,'<data>')
     )
   } else {
     x <- switch(
@@ -82,9 +82,9 @@ rah_condition <- function(column_name, operator, value, is_date = FALSE){
       "LESS_OR_EQUAL"    = paste0(column_name, "%3C%3D", "%22", value, "%22"), # "<="
       "GREATER_THAN"     = paste0(column_name, "%3E",    "%22", value, "%22"), # ">"
       "GREATER_OR_EQUAL" = paste0(column_name, "%3E%3D", "%22", value, "%22"), # ">="
-      "SUBDOMAIN"        = paste0("subdomain", column_name, ",%22", value, "%22"), # subdomain(<column>,'<domain>')
-      "SUBSTRING"        = paste0("substring", column_name, ",%22", value, "%22"), # substring(<column>,'<value>')
-      "WORD"             = paste0("word",      column_name, ",%22", value, "%22")  # word(<column>,'<data>')
+      "SUBDOMAIN"        = paste0("subdomain%28", column_name, ",%22", value, "%22%29"), # subdomain(<column>,'<domain>')
+      "SUBSTRING"        = paste0("substring%28", column_name, ",%22", value, "%22%29"), # substring(<column>,'<value>')
+      "WORD"             = paste0("word%28",      column_name, ",%22", value, "%22%29")  # word(<column>,'<data>')
     )
   }
   return(x)
