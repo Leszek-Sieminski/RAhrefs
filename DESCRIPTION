@@ -1,17 +1,23 @@
-Package: RAhrefs
 Type: Package
-Title: Ahrefs.com API R Interface
+Package: RAhrefs
+Title: 'Ahrefs' API R Interface
 Version: 0.1.4
-Depends: R (>= 3.5.0)
+Authors@R: c(
+    person("Leszek", "Siemiński", , "leszek.sieminski@gmail.com", c("aut", "cre")),
+    person("Performance Media Polska sp. z o.o.", role = c("cph", "fnd"))
+    )
+Description: R wrapper for 'Ahrefs' API that enables downloading detailed 
+    reports about backlinks pointing to website, provides authentication with
+    an API key as well as ordering, grouping and filtering functionalities.
+License: MIT + file LICENCE
+URL: https://ahrefs.com/
+BugReports: https://github.com/Leszek-Sieminski/RAhrefs/issues
+Depends: R (>= 3.4.4)
 Imports: 
     assertthat, 
     httr, 
-    jsonlite,
+    jsonlite, 
     testthat
-Author: Leszek Siemiński [aut, cre]
-Maintainer: Leszek Siemiński <leszek.sieminski@gmail.com>
-Description: Interface for interaction with the Ahrefs.com API through R.
-License: MIT + file LICENCE
 NeedsCompilation:	no
 Encoding: UTF-8
 LazyData: true

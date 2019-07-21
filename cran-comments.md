@@ -5,4 +5,4 @@
 * OS X 10.14.5, R 3.5.1
 
 ## R CMD check results
-There were no ERRORs, WARNINGs or NOTEs. This is my first submission.
+There were no ERRORs, WARNINGs or NOTEs.
