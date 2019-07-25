@@ -5,9 +5,14 @@
 * OS X 10.14.5, R 3.5.1
 
 ## R CMD check results
-There were no ERRORs, WARNINGs. There was 1 NOTE:
+There were no ERRORs, WARNINGs. There were 2 NOTEs:
+   
    Possibly mis-spelled words in DESCRIPTION:
        backlinks (10:19)
-
 However, this is not a spelling error. For more information, 
 please see: <https://en.wikipedia.org/wiki/Backlink>.
+
+  
+  Maintainer: 'Leszek Sieminski <leszek.sieminski@gmail.com>'
+  New submission
+This is my third submission.

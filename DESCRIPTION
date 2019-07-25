@@ -6,9 +6,9 @@ Authors@R: c(
     person("Leszek", "Siemiński", , "leszek.sieminski@gmail.com", c("aut", "cre")),
     person("Performance Media Polska sp. z o.o.", role = c("cph", "fnd"))
     )
-Description: R wrapper for 'Ahrefs' API that enables downloading detailed 
-    reports about backlinks pointing to website, provides authentication with
-    an API key as well as ordering, grouping and filtering functionalities.
+Description: Enables downloading detailed reports from <https://ahrefs.com>
+    about backlinks from pointing to website, provides authentication with an 
+    API key as well as ordering, grouping and filtering functionalities.
 License: MIT + file LICENCE
 URL: https://ahrefs.com/
 BugReports: https://github.com/Leszek-Sieminski/RAhrefs/issues
@@ -18,7 +18,7 @@ Imports:
     httr, 
     jsonlite, 
     testthat
-NeedsCompilation:	no
+NeedsCompilation: no
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
