@@ -1,10 +1,9 @@
-# RAhrefs 0.1.4
+# RAhrefs 0.1.4.9000 (development version)
 ![Lifecycle_Status](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)
 [![Build Status](https://travis-ci.org/Leszek-Sieminski/RAhrefs.svg?branch=master)](https://travis-ci.org/Leszek-Sieminski/RAhrefs)
 [![Build status](https://ci.appveyor.com/api/projects/status/5502p5f854fv5dtc?svg=true)](https://ci.appveyor.com/project/Leszek-Sieminski/rahrefs)
-[![codecov](https://codecov.io/gh/Leszek-Sieminski/RAhrefs/branch/master/graph/badge.svg)](https://codecov.io/gh/Leszek-Sieminski/RAhrefs)
 [![CRAN status](https://www.r-pkg.org/badges/version/RAhrefs)](https://CRAN.R-project.org/package=RAhrefs)
-
+[![codecov](https://codecov.io/gh/Leszek-Sieminski/RAhrefs/branch/master/graph/badge.svg)](https://codecov.io/gh/Leszek-Sieminski/RAhrefs)
 
 R package for SEO specialists which serves as an interface for [Ahrefs](https://ahrefs.com/) API. 
 
@@ -27,8 +26,10 @@ Ahrefs is a research toolset for backlinks and SEO analysis that enables access 
 
 ## News
 For more, see the [NEWS.md](https://github.com/Leszek-Sieminski/RAhrefs/blob/master/NEWS.md)
-* 0.1.4 - fixing condition creating function - there was an error with regex-like operators
-* 0.1.3 - fixing wrong assertthat usage in helper function
+
+* v0.1.4 released on CRAN
+* v0.1.4 - fixing condition creating function - there was an error with regex-like operators
+* v0.1.3 - fixing wrong assertthat usage in helper function
 
 ## Features
 * Authenticate with an API key 
@@ -44,8 +45,12 @@ IMPORTANT NOTE: for testing purposes, target "ahrefs.com" domain - no API credit
 
 ## Installation
 ```r
-install.packages("devtools")
-devtools::install_github("Leszek-Sieminski/RAhrefs")
+# main version on CRAN:
+install.packages("RAhrefs")
+
+# development version:
+# install.packages("devtools")
+# devtools::install_github("Leszek-Sieminski/RAhrefs")
 ```
 
 ## Authentication
