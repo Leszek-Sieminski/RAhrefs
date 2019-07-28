@@ -1,7 +1,7 @@
 Type: Package
 Package: RAhrefs
 Title: 'Ahrefs' API R Interface
-Version: 0.1.4
+Version: 0.1.4.9000
 Authors@R: c(
     person("Leszek", "Siemiński", , "leszek.sieminski@gmail.com", c("aut", "cre")),
     person("Performance Media Polska sp. z o.o.", role = c("cph", "fnd"))

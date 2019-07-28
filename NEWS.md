@@ -1,4 +1,7 @@
-# RAhrefs 0.1.4
+# RAhrefs 0.1.4.9000
+
+#### *2019-07-28*, v0.1.4
+* CRAN release
 
 #### *2019-07-18*, v0.1.4:
 * fixing a bug in condition creating function {rah_condition()} that created an error with regex-like operators ("WORD", "SUBSTRING" & "DOMAIN")
