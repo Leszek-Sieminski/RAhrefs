@@ -9,3 +9,4 @@ helper_authorization\.R
 appveyor\.yml
 cran-comments\.md
 ^CRAN-RELEASE$
+^appveyor\.yml$
