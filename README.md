@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/Leszek-Sieminski/RAhrefs.svg?branch=master)](https://travis-ci.org/Leszek-Sieminski/RAhrefs)
 [![CRAN status](https://www.r-pkg.org/badges/version/RAhrefs)](https://CRAN.R-project.org/package=RAhrefs)
 [![](https://cranlogs.r-pkg.org/badges/RAhrefs)](https://cran.r-project.org/package=RAhrefs)
-[![codecov](https://codecov.io/gh/Leszek-Sieminski/RAhrefs/branch/master/graph/badge.svg)](https://codecov.io/gh/Leszek-Sieminski/RAhrefs)
 
 R package for SEO specialists which serves as an interface for [Ahrefs](https://ahrefs.com/) API. 
 
